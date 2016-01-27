@@ -26,18 +26,18 @@ GEF4530 practicals are planned for:
 
 
 
-1. Mon 07.03.16	practicals at GE-IT lab 209 from 12:15 to 16:00 (AC+HB) 
-2. Tues 08.03.16	practicals at GE-IT lab 209 from 12:15 to 16:00 (AC+HB) 
+1. Mon 07.03.16	practicals at GE-IT lab 209 from 13:15 to 16:00 (AC+HB) 
+2. Tues 08.03.16	practicals at GE-IT lab 209 from 13:15 to 16:00 (AC+HB) 
 
 **Goal: Set-up and how to run a climate model, start of the experiments**
 
-3. Mon 04.04.16	practicals at MetOs(?) from 12:15 to 16:00 (HB+AC)
-4. Wed 06.04.16	practicals at MetOs(?) from 12:15 to 16:00 (HB) 
+3. Mon 04.04.16	practicals at MetOs from 13:15 to 16:00 (HB+AC)
+4. Wed 06.04.16	practicals at MetOs from 13:15 to 16:00 (HB) 
 
 **Goal: Check of the model runs, model analysis**
 
-5. Mon 25.04.16	practicals at MetOs 12:15-16:00 (HB)
-6. Wed 27.04.16	practicals at MetOs 12:15-16:00 (HB)
+5. Mon 25.04.16	practicals at MetOs 13:15-16:00 (HB)
+6. Wed 27.04.16	practicals at MetOs 13:15-16:00 (HB)
 
 **Goal: Present and discuss model results/ exercise**
 
