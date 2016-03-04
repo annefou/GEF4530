@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D1 - Computing and Visualization infrastructure</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<img src="../../images/notur_norstore.jpg" align="middle" width="600" alt="" />
+<br>
+<br>
+<ul>
+<li><a href="#e-science">An e-infrastructure for Science</a></li>
+<li><a href="#Notur">Notur</a></li>
+  <ul>
+    <li><a href="#whatis_Notur">What is Notur?</a></li>
+    <li><a href="#hexagon">Hexagon computing facility</a></li>
+    <li><a href="#notur_data">Available Filesystems on Hexagon </a></li>
+  </ul>
+<li><a href="#NorStore">NorStore</a></li>
+  <ul>
+    <li><a href="#whatis_NorStore">What is NorStore?</a></li>
+    <li><a href="#cruncher">Cruncher post-processing and visualization facility</a></li>
+  </ul>
+</ul>
+<hr>
+<br>
+<br>
+<h2 id="e-science">An e-infrastructure for Science</h2>
+<br>
+<a href="https://en.wikipedia.org/wiki/E-Science">E-science</a> is the application of computer technology to the undertaking of modern scientific investigation, including the preparation, experimentation, data collection, results dissemination, and long-term storage and accessibility of all materials generated through the scientific process. These may include data modeling and analysis, electronic/digitized laboratory notebooks, raw and fitted data sets, manuscript production and draft versions, preprints, and print and/or electronic publications.
+<br>
+<br>
+<a href="https://www.kth.se/en/forskning/forskningsplattformar/ict/forskning/e-vetenskap-1.323973"><img src="../../images/e-science.png" align="middle" width="600" alt="" /></a>
+<br>
+<br>
+The e-infrastructure for Science in Norway follows the same structure and provides users with both computing resources (<a href="#Notur">Notur</a>) and post-processing and visualization facilities with large storage capacity (<a href="#NorStore">NorStore</a>).
+<br>
+<br>
+The picture below introduces the data life cycle from the generation of your model outputs on Notur computing facility (Hexagon) to the preservation of your model results in the <a href="https://archive.norstore.no/">NorStore archive</a>.
+<br>
+<img src="../../images/lifecycle.png" align="middle" alt="" />
+<br>
+<br>
+<h2 id="Notur">Notur</h2>
+<br>
+<h3 id="whatis_Notur">What is Notur?</h3>
+<br>
+Through the Notur-project, <a href="https://www.sigma2.no/">UNINETT Sigma2</a> serves the Norwegian computational science community by providing the infrastructure to 
+individuals or groups involved in education and research at Norwegian universities and colleges, and research and engineering at research institutes and industry who contribute to the funding of Notur.
+<br>
+The HPC-service provides the customer access to facilities and software with a far greater capacity than is normally available at department and faculty levels. The service is primarily set up to run simulation calculations for research and educations purposes, designed as batches.
+<br>
+<br>
+For running <a href="http://www2.cesm.ucar.edu/">CESM CAM-5.3</a>, such computing facilities are necessary.
+<br>
+<br>
+<h3 id="hexagon">Hexagon computing facility</h3>
+<br>
+<img alt="Hexagon small.jpg" src="../../images/130px-Hexagon_small.jpg" width="130" height="206"/>
+<ul>
+<li> 204.9 TFlops peak performance</li>
+<li> 22272 cores</li>
+<li> AMD Opteron 6276 (2.3GHz "Interlagos")</li>
+<li> 1392 CPUs (sockets)</li>
+<li> 696 nodes</li>
+<li> 32 cores per node</li>
+<li> 32GB RAM per node (1GB/core)</li>
+<li> Cray Gemini interconnect</li>
+<li> 2.5D Torus topology</li>
+<li> OS: Cray Linux Environment, CLE 5.2 (Based on Novell Linux SLES11sp3)</li></ul>
+<p>It was upgraded from Cray XT4 in March 2012.</p>
+<br>
+<br>
+Hexagon is a large machine (cluster) made of  696 nodes (collection of machines linked together via an efficient network) and to manage efficiently the machine, it runs under the control of a batch system. 
+
+<br>
+The opposite of a batch job is interactive processing, in which a user enters individual commands to be processed immediately. This is what you are used to when working on your laptop or any UIO servers (such as sverdrup.uio.no).
+<br>
+We need to use a batch system to make sure all the resources are well utilized and this is the role of the job scheduler to decide where to run user "jobs". Its role is to optimize the resources and to try to run as many user jobs as possible. It can be seen as a tetris game (see image below) where each block represents a user job.
+<br>
+<img src="../../images/tetris.png" width="130" height="206"/>
+<br>
+All user jobs must be submitted to the cluster through this batch system. Hexagon uses <a href="https://en.wikipedia.org/wiki/Portable_Batch_System">PBS</a> (Portable Batch System). The submitted jobs are then routed into a number of queues (depending on the needed resources, e.g. runtime) and sorted according to some priority scheme.
+<br>
+A job will run when the required resources become available. 
+<br>
+More information on the Batch system on Hexagon can be found <a href="https://docs.hpc.uib.no/wiki/Job_execution_%28Hexagon%29#Batch_system">here</a>.
+<br>
+<br>
+<h3 id="notur_data">Available Filesystems on Hexagon</h3>
+<br>
+The following file systems exist on hexagon: 
+
+<ul>
+<li>User area (home directories): /home
+<br>
+The file system for user home directories on hexagon. This file system is currently very small, and not mounted on the compute nodes, so it should NOT be used for running jobs. It has quota enabled, limits can be found here . Files are backed up daily, except for folders called "scratch" or "tmp" and their sub-folders.
+</li>
+<li>Work area (temporary data): /work/users
+<br>
+Large external storage shared by all compute nodes on hexagon. Files are NOT backed up. /work should be used when running jobs since it's much larger than /home and the only file system available on the compute nodes. For convenience, a symlink from /work/$USER to /work/users/$USER is created. /work is a <a href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29">Lustre</a> parallel file system.
+	</li>
+</ul>
+<b>Note:</b> the /work/users/* directories are subject to automatic deletion dependent on modification, access time and the total usage in the file system. The oldest files will be deleted first. You can find more information about deletion policy in <a href="https://docs.hpc.uib.no/wiki/Filesystems_policy%28Hexagon%29">Filesystems policy(Hexagon)</a>. 
+<br>
+<br>
+<h2 id="NorStore">NorStore</h2>
+<br>
+<h3 id="whatis_NorStore">What is NorStore?</h3>
+<br>
+<a href="https://www.sigma2.no/node/8">NorStore</a> is the Norwegian infrastructure for storing scientific data. 
+<br>
+<br>
+NorStore facility is divided in two parts:
+<ul>
+    <li>Active data, which are processed or being analysed, are stored in the <a href="https://www.sigma2.no/content/project-data-storage">Project Area</a>.</li>
+    <li>When the data are no longer expected to change and/or results have been published, the data should normally be made accessible to the public. Data can be transferred to the <a href="https://www.sigma2.no/content/national-research-data-archive">NorStore Archive</a> from the Project area or directly uploaded.</li>
+</ul>
+<br>
+<br>
+When running the CAM-5.3 model on hexagon, the model outputs are generated and stored in the temporary working area (/work/users/$LOGNAME). As mentioned earlier, the working area on Hexagon is a temporary storage area and data must be moved to a more permanent storage area where you will be able to easily post-process and visualize your model results.
+<br>
+Model outputs will have to be moved from Hexagon working area (/work/users/$LOGNAME) to the norStore project area. You can use scp to copy your data from Hexagon to NorStore but the detailed procedure will be explained later.
+
+<br>
+<br>
+<h3 id="cruncher">Cruncher</h3>
+<br>
+Once your model outputs are moved to norStore, you can start post-processing and generating plots. The machine you will be using for post-processing and visualizing your data is called cruncher.norstore.uio.no.
+<br>
+The main advantage of using this machine is that your data are directly accessible from cruncher and the necessary post-processing and visualization packages we need are already available (see <a href="https://www.sigma2.no/content/software">here</a> for a more complete list).
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D1 - LAPTOP SETUP</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<img src="../../images/laptop_setup.jpg" align="middle" width="600" alt="" />
+<br>
+<br>
+<ul>
+<li><a href="#Remote">Check Remote Connection</a></li>
+  <ul>
+    <li><a href="#Linux" >From a Linux laptop</a></li>
+    <li><a href="#Mac">From a Mac laptop</a></li>
+    <li><a href="#Windows">From a Windows laptop</a></li>
+  </ul>
+<li><a href="#Login">Check access to Notur Computing facility (Hexagon) and NorStore (cruncher)</a></li>
+<li><a href="#Analysis">Check Post-processing and Visualization Software</a></li>
+</ul>
+<hr>
+<br>
+<br>
+<h2 id="Remote">Check Remote Connection</h2>
+
+To be able to connect to the High-performance Computing Machine where CAM-5.3 (Hexagon) will be run and on the norStore facility (cruncher) to post-process your model results, you need to be able to run Remote X11 applications.
+<br>
+<br>
+<h3 id="Linux" >From a Linux laptop</h3>
+The tool on Linux for connecting to a remote system using SSH is called, unsurprisingly, ssh.
+<p> Launch a terminal from your desktop’s application menu and you will see the bash shell. There are other shells, but most Linux distributions use bash by default.</p>
+<img src="../../images/linux_terminal.png" width="600" alt="" />
+<br>
+Then check you can <a href="#Login">login both on Hexagon (CRAY HPC computing facility) and Cruncher (norstore storage facility)</a>.
+<br>
+<br>
+<i><b>Please report any problems.</b></i>
+<br>
+<br>
+<h3 id="Mac">From a Mac laptop</h3>
+If you haven't done it yet, install xcode:
+<ul>
+   <li> xcode can be installed by going to the App Store. You need to install xcode, then goto the top left of your screen and click XCode -> Preferences -> Downloads, find "command line tools" and click install.
+   </li>
+   <li> xcode is a 1GB+ download so you will not have time to download it in class Monday.
+   </li>
+   <li>
+    Note that the current version of xcode is only supported by OSX 10.7.4+ so we highly recommend you upgrade your operating system. If for whatever reason you absolutely cannot upgrade your os, you need to register for a free Apple developer account and download the appropriate version of xcode
+   </li>
+</ul>
+Mac OS X has a built-in SSH client called Terminal which can be used to connect to remote servers. By default, Terminal.app is located in Applications -> Utilities folder. Double-click on the icon to start the client.
+
+Then check you can <a href="#Login">login both on Hexagon (CRAY HPC computing facility) and Cruncher (norstore storage facility)</a>.
+<br>
+<i><b>Please report any problems.</b></i>
+<br>
+<br>
+<h3 id="Windows">From a Windows laptop</h3>
+
+Here we assume you wish to use your personal laptop (not UIO laptop) and have administrator privileges.        
+<br>
+If you have a UIO laptop, all the necessary packages for running remote X11 applications are already installed and ready to use. Ask your administrator if you need help. 
+<br>
+<br>
+For running remote X11 applications from Windows the easiest is to install <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/x2go.html">X2Go Client</a>. You can download it <a href="http://code.x2go.org/releases/binary-win32/x2goclient/releases/4.0.5.0-2015.07.31/">here</a>.
+<br>
+<br>
+    Once installed, double click on the X2Go shortcut on the desktop (see figure below)
+<br>
+<img src="../../images/x11-logo.png" alt="" />
+<br>
+A session preference window will pop up and you should fill it with the following information:
+<ul>
+<li>Session name: sverdrup</li>
+<li>Host        : sverdrup.uio.no</li>
+<li>Login       : annefou (please use your own username!)</li>
+</ul>
+<br>
+<img src="../../images/x2go_preferences.png" alt="" />
+<br>
+There are many "Session types" to choose from. We recommend a KDE session. Use your UIO password and open a connection on sverdrup. 
+<br>
+<b>Note</b>: If you have a firewall installed on your computer you will need to allow remote hosts access to the X-server.
+<br>
+<i><b>Please report any problems.</b></i>
+Then open a terminal and check you can <a href="#Login">login both on Hexagon (CRAY HPC computing facility) and Cruncher (norstore storage facility)</a>.
+<br>
+<br>
+<h2 id="Login">Login to Notur (Hexagon) and NorStore (cruncher)</h2>
+<br>
+In this section, you should check you can access both <a href="https://docs.hpc.uib.no/wiki/Main_Page">Hexagon</a> (where you will run <a href="">CAM-5</a>) and <a href="https://www.sigma2.no/content/norstore-services">Cruncher</a> (where you will pos t-process and visualize the results of your model runs).
+<pre>
+ssh -Y $LOGNAME@hexagon.bccs.uib.no
+</pre>
+where $LOGNAME is your UIO username (replace it by your own username!)
+<br>
+More documentation on hexagon can be found <a href="https://docs.hpc.uib.no/wiki/FAQ_%28Hexagon%29">here</a>.
+<br>
+<br>
+Post-processing and visualization will be performed on NorStore facility cruncher.norstore.uio.no:
+<pre>
+ssh -Y $LOGNAME@cruncher.norstore.uio.no
+</pre>
+where $LOGNAME is your UIO username (replace it by your own username!)
+<br>
+Documentation on norStore facility can be found <a href="https://www.sigma2.no/node/8">here</a>.
+<br>
+<br>
+Please note that these machines are not accessible outside the UIO networks. If you wish to login on hexagon or cruncher outside the UIO network, use 
+<a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/x2go.html">X2Go Client</a>. 
+<br>
+<br>
+<h2 id="Analysis">Check Post-processing and Visualization Software</h2>
+<br>
+On norStore (cruncher.norstore.uio.no), we will be using the following tools for post-processing and visualize the results of CAM-5 simulations:
+<ul>
+<li><a href="https://code.zmaw.de/projects/cdo">CDO (Climate Data operators)</a></li> 
+<li><a href="https://www.ncl.ucar.edu/index.shtml">NCL (Ncar Command Language)</a></li>
+<li><a href="http://www.giss.nasa.gov/tools/panoply/">Panoply netCDF, HDF and GRIB Data Viewer</a></li>
+</ul>
+<br>
+These packages are already installed on cruncher and more information on how to use them is detailed in the <a href="../../results.html">Results</a> section.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
