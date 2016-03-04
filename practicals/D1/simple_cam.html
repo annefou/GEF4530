@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D1 - Creating and Running a CAM test case</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<h2 id="gef4530_setup">GEF4530 Notur Initialization</h2>
+        
+Make sure you have set-up your SSH keys properly and you can transfer files with scp without entering your password. If not go <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">here</a>.
+<pre>
+scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/setup/gef4530_notur.bash $HOME/.
+
+cd $HOME
+
+chmod u+x ./gef4530_notur.bash
+
+./gef4530_notur.bash
+</pre>
+
+<h2 id="create_case">Create a New case</h2>
+<pre>
+cd $HOME/cesm/cesm1_2_2/scripts
+
+#
+# Simulation 1: short simulation
+#
+./create_newcase -case ~/cesm_case/f2000.T31T31.test -res T31_T31 -compset F_2000_CAM5 -mach hexagon
+
+cd ~/cesm_case/f2000.T31T31.test
+
+./xmlchange RUN_TYPE=hybrid
+./xmlchange RUN_REFCASE=f2000.T31T31.control
+./xmlchange RUN_REFDATE=0009-01-01
+./xmlchange -file env_run.xml -id STOP_N -val 1
+./xmlchange -file env_run.xml -id STOP_OPTION -val nmonths
+
+./cesm_setup
+
+./f2000.T31T31.test.build
+
+</pre>
+
+<h2 id="run_case">Running a case</h2>
+<pre>
+cat >> user_nl_cam << EOF
+nhtfrq = -24
+EOF
+cat >> user_nl_cice << EOF
+grid_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
+kmt_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
+EOF
+      
+scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/f2000.T31T31.control.*.0009-01-01-00000.nc  /work/users/$USER/$CASENAME/run/.
+scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/rpointer.* /work/users/$USER/$CASENAME/run/.
+    
+./f2000.T31T31.test.submit
+
+</pre>
+</body>
+</html>
