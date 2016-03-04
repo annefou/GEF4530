@@ -36,6 +36,8 @@ Released   : 20121026
   <ul>
     <li><a href="#whatis_NorStore">What is NorStore?</a></li>
     <li><a href="#cruncher">Cruncher post-processing and visualization facility</a></li>
+    <li><a href="#norstore_data">Available Filesystems on Cruncher </a></li>
+  </ul>
   </ul>
 </ul>
 <hr>
@@ -145,6 +147,26 @@ Model outputs will have to be moved from Hexagon working area (/work/users/$LOGN
 Once your model outputs are moved to norStore, you can start post-processing and generating plots. The machine you will be using for post-processing and visualizing your data is called cruncher.norstore.uio.no.
 <br>
 The main advantage of using this machine is that your data are directly accessible from cruncher and the necessary post-processing and visualization packages we need are already available (see <a href="https://www.sigma2.no/content/software">here</a> for a more complete list).
+<br>
+<br>
+<h3 id="norstore_data">Available Filesystems on Cruncher</h3>
+<br>
+<br>
+The following file systems exist on cruncher: 
+
+<ul>
+<li>User area (home directories): /home
+<br>
+The file system for user home directories on cruncher. This file system is currently very small, so it should NOT be used for storing your model outputs. 
+</li>
+<li>Project area : /projects/NS1000K/GEF4530
+<br>
+The file system provides users with a direct access to all data stored in your norStore project (NS1000K). There is no individual quota but a quota per project. To check the usage and the amount of available space for your project, use dusage:
+<pre>
+dusage -p NS1000K
+</pre>
+	</li>
+</ul>
 <br>
 <br>
 <br>
