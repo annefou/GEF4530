@@ -24,6 +24,7 @@ Released   : 20121026
 <h2 id="gef4530_setup">GEF4530 Notur Initialization</h2>
         
 Make sure you have set-up your SSH keys properly and you can transfer files with scp without entering your password. If not go <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">here</a>.
+<code>
 <pre>
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/setup/gef4530_notur.bash $HOME/.
 
@@ -33,8 +34,10 @@ chmod u+x ./gef4530_notur.bash
 
 ./gef4530_notur.bash
 </pre>
+</code>
 
 <h2 id="create_case">Create a New case</h2>
+<code>
 <pre>
 cd $HOME/cesm/cesm1_2_2/scripts
 
@@ -56,8 +59,10 @@ cd ~/cesm_case/f2000.T31T31.test
 ./f2000.T31T31.test.build
 
 </pre>
+</code>
 
 <h2 id="run_case">Running a case</h2>
+<code>
 <pre>
 cat >> user_nl_cam << EOF
 nhtfrq = -24
@@ -73,5 +78,6 @@ scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.c
 ./f2000.T31T31.test.submit
 
 </pre>
+</code>
 </body>
 </html>

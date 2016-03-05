@@ -106,18 +106,22 @@ Then open a terminal and check you can <a href="#Login">login both on Hexagon (C
 <h2 id="Login">Login to Notur (Hexagon) and NorStore (cruncher)</h2>
 <br>
 In this section, you should check you can access both <a href="https://docs.hpc.uib.no/wiki/Main_Page">Hexagon</a> (where you will run <a href="">CAM-5</a>) and <a href="https://www.sigma2.no/content/norstore-services">Cruncher</a> (where you will pos t-process and visualize the results of your model runs).
+<code>
 <pre>
 ssh -Y $LOGNAME@hexagon.bccs.uib.no
 </pre>
+</code>
 where $LOGNAME is your UIO username (replace it by your own username!)
 <br>
 More documentation on hexagon can be found <a href="https://docs.hpc.uib.no/wiki/FAQ_%28Hexagon%29">here</a>.
 <br>
 <br>
 Post-processing and visualization will be performed on NorStore facility cruncher.norstore.uio.no:
+<code>
 <pre>
 ssh -Y $LOGNAME@cruncher.norstore.uio.no
 </pre>
+</code>
 where $LOGNAME is your UIO username (replace it by your own username!)
 <br>
 Documentation on norStore facility can be found <a href="https://www.sigma2.no/node/8">here</a>.
