@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D1 - LAPTOP SETUP</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<img src="../images/setup_norstore.png" align="middle" alt="" />
+<br>
+<br>
+<ul>
+<li><a href="#Setup">Check Setup on Cruncher</a></li>
+<li><a href="#Availability">Check availability of post-processing and Visualization tools</a></li>
+</ul>
+<hr>
+<br>
+<br>
+<h2 id="Setup">Check setup</h2>
+
+To post-process your model results on norStore facility (Cruncher), you need to be able to run Remote X11 applications.
+<br>
+If you haven't checked your remote access yet, please follow this <a href="../practicals/D1/setup_laptops.html">link</a>.
+<br>
+From a terminal:
+<code>
+<pre>
+ssh -Y $LOGNAME@cruncher.norstore.uio.no
+</pre>
+</code>
+where $LOGNAME is your UIO username (replace it by your own username!)
+<br>
+Documentation on norStore facility can be found <a href="https://www.sigma2.no/node/8">here</a>.
+<br>
+<br>
+Please note that these machines are not accessible outside the UIO networks. If you wish to login on hexagon or cruncher outside the UIO network, use 
+<a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/x2go.html">X2Go Client</a>. 
+<br>
+<br>
+<h2 id="Availability">Check post-processing and Visualization tools</h2>
+On norStore (cruncher.norstore.uio.no), we will be using the following tools for post-processing and visualize the results of CAM-5 simulations:
+<ul>
+<li><a href="https://code.zmaw.de/projects/cdo">CDO (Climate Data operators)</a></li> 
+<li><a href="https://www.ncl.ucar.edu/index.shtml">NCL (Ncar Command Language)</a></li>
+<li><a href="http://www.giss.nasa.gov/tools/panoply/">Panoply netCDF, HDF and GRIB Data Viewer</a></li>
+</ul>
+<br>
+These packages are already installed on cruncher but every time you login on cruncher, you would need to setup your environment:
+<code>
+<pre>
+module load cdo
+module load ncl
+export PATH=/projects/NS1000K/panoply/4.4.3/:$PATH
+</pre>
+</code>
+<br>
+<br>
+To make sure your environment is set-up correctly, enter the following commands:
+<code>
+<pre>
+cdo -h
+</pre>
+</code>
+It will return the usage of the cdo (Climate Data Operators) tool.
+<br>
+<br>
+<code>
+<pre>
+ncl -h
+</pre>
+</code>
+Same as for cdo but this time you will get the full usage of the ncl command.
+<br>
+<br>
+<code>
+<pre>
+panoply.sh
+</pre>
+</code>
+When typing the command above, a window should pop-up with a File browser. 
+<br>
+<img src="../images/panoply_start.png" align="middle" alt="" />
+<br>
+<br>
+<b><font color="red">Report any problems as soon as possible so we can help you to set-up your environment!</font></b>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
