@@ -21,6 +21,17 @@ Released   : 20121026
 <link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<br>
+<ul>
+<li><a href="#gef4530_setup">GEF4530 Notur Initialization</a><li>
+<li><a href="#create_case">Create a New case</a></li>
+<li><a href="#monitor_case">Monitor your test run</a></li>
+</ul>
+
+<br>
+<hr>
+<br>
+<br>
 <h2 id="gef4530_setup">GEF4530 Notur Initialization</h2>
         
 Make sure you have set-up your SSH keys properly and you can transfer files with scp without entering your password. If not go <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">here</a>.
@@ -79,5 +90,31 @@ scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.c
 
 </pre>
 </code>
+<br>
+<br>
+<h2 id="monitor_case">Monitor your test run</h2>
+<br>
+<br>
+The script "f2000.T31T31.test.submit" submits a job to the job scheduler on hexagon. More information can be found <a href="https://docs.hpc.uib.no/wiki/Job_execution_%28Hexagon%29">here</a>.
+<ul>
+<li>To monitor your job on hexagon:
+<br>
+<code>
+<pre>
+qstat -u $USER
+</pre>
+</code>
+
+</li>
+</ul>
+<br>
+Full list of available commands and their usage can be found <a href="https://docs.hpc.uib.no/wiki/Job_execution_%28Hexagon%29#Manage_a_job_.28submission.2C_monitoring.2C_suspend.2Fresume.2C_canceling.29">here</a>.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
 </html>
