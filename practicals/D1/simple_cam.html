@@ -58,8 +58,39 @@ chmod u+x ./gef4530_notur.bash
 ./gef4530_notur.bash
 </pre>
 </code>
-
+The script above copies the source code in $HOME/cesm/cesm_1_2_2 and creates symbolic links for the input data necessary to run our model configuration in /work/users/$USER/inputdata. 
+Input data can be large this is why we create symbolic links instead of making several copies (one per user). The main copy is located in /work/users/annefou/public/inputdata.
+<br>
+<br> 
 <h2 id="create_case">Create a New case</h2>
+<br>
+Now that you have the CESM source code in $HOME/cesm/cesm_1_2_2, you can have a first look at the code.
+<br>
+<img src="../../images/tree_source.png" align="middle" alt="" />
+<br>
+We will build and run CAM in its standalone configuration i.e. without all the other components.
+<br>
+The basic workflow to run the CESM code is the following:
+<ul>
+<li>Create a New Case</li>
+<li>Invoke cesm_setup</li>
+<li>Build the Executable</li>
+<li>Run the Model and Output Data Flow</li>
+</ul>
+<br>
+To create a new case, we will be using create_newcase script. It is located in $HOME/cesm/cesm1_2_2/scripts.
+<br>
+There are many options and we won't discuss all of them. To get the full usage of create_newcase:
+<code>
+<pre>
+./create_newcase --help
+</pre>
+</code>
+<br>
+The 4 main arguments of create_newcase are explained on the figure below:
+<img src="../../images/newcase.png" align="middle" alt="" />
+<br>
+<br>
 <code>
 <pre>
 cd $HOME/cesm/cesm1_2_2/scripts
@@ -68,23 +99,149 @@ cd $HOME/cesm/cesm1_2_2/scripts
 # Simulation 1: short simulation
 #
 ./create_newcase -case ~/cesm_case/f2000.T31T31.test -res T31_T31 -compset F_2000_CAM5 -mach hexagon
+</pre>
+</code>
+<br>
+<ul>
+<li><b>case</b>: specifies the name and location of the case being created. It creates a new case in $HOME/cesm_case and its name is f2000.T32T31.test</li>
+<li><b>res</b>: specifies the model resolution (resolution of the grid). Each model resolution can be specified by its alias, short name or long name:
+  <ul>
+  <li>alias: T31_T31 (atm/lnd_ocn/ice)</li>
+  <li>short name: T31_T31</li>
+  <li>long name: a%T31_l%T31_oi%T31_r%r05_m%gx3v7_g%null_w%null (atm,lnd,ocn/ice,river,lnd mask, lnd-ice,wave)</li>
+  </ul>
+<br>
+The full list of supported grid is given <a href="http://www.cesm.ucar.edu/models/cesm1.2/cesm/doc/modelnl/grid.html">here</a>.
+</li>
+<li><b>compset</b>: specifies the component set, i.e., component models, forcing scenarios and physics options for those models. 
+<br>
+As for the resolution, the component set can be specified by its alias, short name or long name:
+<ul>
+<li>alias: FC5</li>
+<li>short name: F_2000_CAM5</li>
+<li>long name: 2000_CAM5_CLM40%SP_CICE%PRES_DOCN%DOM_RTM_SGLC_SWAV </li>
+</ul>
+<br>
+The notation for the compset longname is:
+<br>
+<code>
+<pre>
+   TIME_ATM[%phys]_LND[%phys]_ICE[%phys]_OCN[%phys]_ROF[%phys]_GLC[%phys]_WAV[%phys][_BGC%phys]
+</pre>
+</code>
+The compset longname has the specified order: 
+<br>
+   <b>atm, lnd, ice, ocn, river, glc wave cesm-options</b>
+<br>
 
+Where
+
+<code>
+<pre>
+   TIME = Time period (e.g. 2000, 20TR, RCP8...)
+   ATM  = [CAM4, CAM5, DATM, SATM, XATM]
+   LND  = [CLM40, CLM45, DLND, SLND, XLND]
+   ICE  = [CICE, DICE, SICE, SICE]
+   OCN  = [POP2, DOCN, SOCN, XOCN,AQUAP,MPAS]
+   ROF  = [RTM, DROF, SROF, XROF]
+   GLC  = [CISM1, SGLC, XGLC]
+   WAV  = [WW3, DWAV, SWAV, XWAV]
+   BGC  = optional BGC scenario
+</pre>
+</code>
+
+The OPTIONAL %phys attributes specify submodes of the given system
+<br>
+The list of available component set is given <a href="http://www.cesm.ucar.edu/models/cesm1.2/cesm/doc/modelnl/compsets.html">here</a>.
+<br>
+In our case we have:
+  <ul>
+     <li>TIME = 2000: we are running our model for present days</li>
+     <li>ATM = CAM5: we will be using CAM5 for the atmospheric component</li>
+     <li>LND = CLM40%SP: Community Land Model (CLM) 4 with prescribed satellite phenology</li> 
+     <li>ICE = CICE%PRES: we will be running CESM with prescribed cice (Community Ice CodE)</li>
+     <li>OCN = DOCN%DOM: Climatological Data Ocean Model (DOCN) with Data Ocean mode (see more <a href="http://www.cesm.ucar.edu/models/ocn-docn/docn4.0/userguide.html">here</a>)</li>
+     <li>ROF = RTM: we will be using the default <a href="http://www.cesm.ucar.edu/models/cesm1.2/rtm/">River Transport Model</a> (RTM) model</li>
+     <li>GLC = SGLC: stub land-ice Model</li>
+     <li>WAV = SWAV: stub ocean-wave model</li>
+  </ul>
+
+<br>
+</li>
+<li><b>mach</b>: specifies the machine where CESM will be compiled and run. We will be running CESM on hexagon (a set of scripts for hexagon can be found in $HOME/cesm/cesm1_2_2/scripts/ccsm_utils/Machines) </li>
+</ul>
+<br>
+Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.test corresponding to our new case:
+<br>
+<code>
+<pre>
 cd ~/cesm_case/f2000.T31T31.test
-
+</pre>
+</code>
+Check the content of the directory and browse the sub-directories:
+<br>
+<img src="../../images/casedir_test.png" align="middle" alt="" />
+<br>
+For this tests (and all our simulations), we do not wish to have a "cold" start and we will therefore restart and continue an existing simulation we have previously run.
+<br>
+<code>
+<pre>
 ./xmlchange RUN_TYPE=hybrid
 ./xmlchange RUN_REFCASE=f2000.T31T31.control
 ./xmlchange RUN_REFDATE=0009-01-01
+</pre>
+</code>
+
+We use xmlchange, a small script to update variables (such as RUN_TYPE, RUN_REFCASE, etc.) defined in xml files. All the xml files contained in your test case directory will be used by cesm_setup to generate your configuration setup (Fortran namelist, etc.):
+
+<code>
+<pre>
+ls *.xml
+
+</pre>
+</code>
+To change the duration of our test simulation and set it to 1 month:
+<code>
+<pre>
 ./xmlchange -file env_run.xml -id STOP_N -val 1
 ./xmlchange -file env_run.xml -id STOP_OPTION -val nmonths
-
+</pre>
+</code>
+<br>
+Now we are ready to set-up our model configuration and build the cesm executable.
+<code>
+<pre>
 ./cesm_setup
 
 ./f2000.T31T31.test.build
 
 </pre>
 </code>
+<br>
+After building CESM for your configuration, a new directory (and a set of sub-directories) are created in /work/users/$USERS/f2000.T31T31.test:
+<ul>
+<li><b>bld</b>: contains the object and CESM executable for your configuration</li>
+<li><b>run</b>: this directory will be used during your simulation run to generate output files, etc.</li>
+</ul>
+<br>
+<br>
+<br>
 
 <h2 id="run_case">Running a case</h2>
+
+Namelists can be changed before configuring and building CESM but it can also be done before running your test case. Then, you cannot use xmlchange and update the xml files, you need to directly change the namelist files.
+<br>
+The default history file from CAM is a monthly average.  
+We can change the output frequency with the namelist variable
+<b>nhtfrq</b>
+<ul>
+<li>If nhtfrq=0, the file will be a monthly average </li>
+<li>If nhtfrq>0, frequency is input as number of timesteps. </li>
+<li>If nhtfrq<0, frequency is input as number of hours. </li>
+</ul>
+For instance to change the history file from monthly average to daily 
+average, we set the namelist variable nhtfrq = -24. We also need to do the following changes (to copy restart files in your running directory, etc.):
+
 <code>
 <pre>
 cat >> user_nl_cam << EOF
@@ -97,6 +254,13 @@ EOF
       
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/f2000.T31T31.control.*.0009-01-01-00000.nc  /work/users/$USER/f2000.T31T31.test/run/.
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/rpointer.* /work/users/$USER/f2000.T31T31.test/run/.
+</pre>
+</code>
+<br>
+<br>
+Now you can submit your test case to hexagon:
+<code>
+<pre>
     
 ./f2000.T31T31.test.submit
 
