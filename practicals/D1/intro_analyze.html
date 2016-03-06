@@ -29,15 +29,22 @@ Released   : 20121026
 <br>
 <h2 id="copy_norstore">Move model outputs on norStore</h2>
 <br>
-During your test case run, CAM-5.3 generates daily outputs in the "run" directory:
+During your test case run, CAM-5.3 generates outputs in the "run" directory:
 <br>
 <br>
 <img src="../../images/rundir_test.png" align="middle" alt="" />
+<br>
+At the end of your run, the run directory will only contain files that are needed to continue an existing simulation but all the model outputs are moved to another directory (archive directory). On hexagon this directory is semi-temporary which means data will be automatically deleted after a short period of time.
+<br>
+<img src="../../images/archivedir_test.png" align="middle" alt="" />
 <br>
 Check your run was successful and generated all the necessary files you need for your analysis.
 <code>
 <pre>
 cd /work/users/$USER/f2000.T31T31.test/run
+ls -lrt
+
+cd /work/users/$USER/archive/f2000.T31T31.test/atm/hist
 ls -lrt
 </pre>
 </code>
@@ -49,8 +56,11 @@ If you haven't set-up your SSH keys, the next commands (ssh and <a href="http://
 <code>
 <pre>
 ssh login3.norstore.uio.no 'mkdir -p /projects/NS1000K/GEF4530/outputs/$USER/runs'
+ssh login3.norstore.uio.no 'mkdir -p /projects/NS1000K/GEF4530/outputs/$USER/archive'
 
 rsync -avz /work/users/$USER/f2000.T31T31.test $USER@login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/$USER/runs/.
+
+rsync -avz /work/users/$USER/archive/f2000.T31T31.test $USER@login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/$USER/archive/.
 </pre>
 </code>
 <br>
