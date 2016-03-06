@@ -35,6 +35,18 @@ Released   : 20121026
 <h2 id="gef4530_setup">GEF4530 Notur Initialization</h2>
         
 Make sure you have set-up your SSH keys properly and you can transfer files with scp without entering your password. If not go <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">here</a>.
+<br>
+<br>
+To run CAM-5.3 on hexagon, we will use:
+<ul>
+<li><font color="green">Subversion client (version 1.6.7) to get CESM source code</font></li>
+<li>Fortran and C compilers (pgi 15.3.0 compilers) </li>
+<li>NetCDF library (netcdf4.3.3.1) </li>
+<li>MPI (Cray mpich 7.2.5) </li>
+</ul>
+To be able to compile and run CESM on hexagon, no changes to the source code were necessary; we just had to adapt a few scripts for setting the compilers and libraries used by CESM.
+<br> 
+To simplify and allow you to run CESM as quickly as possible, we have prepared a set-up script gef4530_notur.bash.
 <code>
 <pre>
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/setup/gef4530_notur.bash $HOME/.
