@@ -23,5 +23,25 @@ Released   : 20121026
 <body>
         
 <h1>Check the 1 month test run</h1>
+During your test case run, CAM-5.3 generates outputs in the "run" directory:
+<br>
+<br>
+<img src="../../images/rundir_test.png" align="middle" alt="" />
+<br>
+At the end of your run, the run directory will only contain files that are needed to continue an existing simulation but all the model outputs are moved to another directory (archive directory). On hexagon this directory is semi-temporary which means data will be automatically deleted after a short period of time.
+<br>
+<img src="../../images/archivedir_test.png" align="middle" alt="" />
+<br>
+Check your run was successful and generated all the necessary files you need for your analysis.
+<code>
+<pre>
+cd /work/users/$USER/f2000.T31T31.test/run
+ls -lrt
+
+cd /work/users/$USER/archive/f2000.T31T31.test/atm/hist
+ls -lrt
+</pre>
+</code>
+You should see a number of netCDF files (ends with ".nc").
 </body>
 </html>
