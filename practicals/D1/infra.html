@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
 Design by TEMPLATED
 http://templated.co
@@ -75,6 +75,7 @@ For running <a href="http://www2.cesm.ucar.edu/">CESM CAM-5.3</a>, such computin
 <h3 id="hexagon">Hexagon computing facility</h3>
 <br>
 <img alt="Hexagon small.jpg" src="../../images/130px-Hexagon_small.jpg" width="130" height="206"/>
+Hexagon is a Cray XE6m-200 cluster machine:
 <ul>
 <li> 204.9 TFlops peak performance</li>
 <li> 22272 cores</li>
@@ -89,7 +90,19 @@ For running <a href="http://www2.cesm.ucar.edu/">CESM CAM-5.3</a>, such computin
 <p>It was upgraded from Cray XT4 in March 2012.</p>
 <br>
 <br>
-Hexagon is a large machine (cluster) made of  696 nodes (collection of machines linked together via an efficient network) and to manage efficiently the machine, it runs under the control of a batch system. 
+Hexagon is a large machine (cluster) made of  696 nodes (collection of machines linked together via an efficient network). Each node is linked to another via a 2D torus network:
+<br>
+<img src="../../images/2DTorus_graph.png"/>
+<br>
+
+On one single node, there are 32 cores and a total of 32 GB of shared memory. This shared memory can be accessed by all the processors of one single node but a processor on another node cannot access it. The image below attempts to summarize these two concepts (shared vs. distributed memory):
+
+<br>
+<img src="../../images/shared_distributedRAM.png"/>
+<br>
+
+
+To manage efficiently the machine, it runs under the control of a batch system. The fact is that one single program does not usually use the full machine (1392 CPUs) but many users can fill the machine very quickly with several "small" programs.
 
 <br>
 The opposite of a batch job is interactive processing, in which a user enters individual commands to be processed immediately. This is what you are used to when working on your laptop or any UIO servers (such as sverdrup.uio.no).
