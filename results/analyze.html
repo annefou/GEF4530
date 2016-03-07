@@ -28,7 +28,9 @@ Released   : 20121026
 <li><a href="#cdo">CDO (Climate Data Operators)</a></li>
 <li><a href="#ncl">NCL (Ncar Command Language)</a></li>
 <li><a href="#nco">NCO (netCDF Operators)</a></li>
+<li><a href="#ncview">Ncview: a netCDF visual browser</a></li>
 <li><a href="#panoply">Panoply netCDF Data Viewer</a></li>
+<li><a href="#python">Python programming language using NetCDF4, Xarray and matplotlib</a></li>
 </ul>
 <hr>
 <br>
@@ -56,6 +58,26 @@ NCL is an interpreted language (no need to compile your program) designed specif
 NCO is a suite of programs designed to perform certain "operations" on netCDF files, i.e., things like averaging, concatenating, subsetting, or metadata manipulation. 
 <ul>
 <li><a href="http://nco.sourceforge.net">NCO (netCDF Operator website)</a></li>
+</ul>
+<br>
+<h2 id="ncview">Ncview: a netCDF visual browser</h2>
+Ncview is one of the simplest visual browser for netCDF format files. It is available on most Linux machines.
+<br>
+Go to /projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist and choose one file to visualize:
+<code>
+<pre>
+cd /projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist
+ncview f2000.T31T31.control.cam.h0.0007-09-28-00000.nc
+</pre>
+</code>
+<br>
+Then select a variable (for instance T in 4d vars) and a plot should appear.
+<br>
+If you want to learn more about ncview:
+<ul>
+<li>See a <a href="http://cirrus.ucsd.edu/~pierce/software/ncview/ncview_screenshot.gif">screenshot</a> of ncview in action.</li>
+
+<li><a href="http://cirrus.ucsd.edu/~pierce/software/ncview/quick_intro.html">Quick introduction</a>: Everything you need to know to get working in 5 minutes.</li>
 </ul>
 <br>
 <br>
