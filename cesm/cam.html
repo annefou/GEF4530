@@ -41,7 +41,9 @@ CESM is a fully-coupled, community, global climate model that provides state-of-
 Some facts about CESM:
 <ul>
 <li>Written in Fortran 90</li>
-<li>About 900 000 lines of code</li>
+<li>About 900 000 lines of Fortran 90 code</li>
+<li>About 12,000 lines of perl and shell scripts that configure, build, and run the model</li>
+<li>Parallelized with <a href="http://www.mpi-forum.org/">MPI</a> (Message Passing Interface) and <a href="http://openmp.org/wp/">OpenMP</a> (Open Multi-Processing)</li>
 <li>To keep track of code changes, CESM developers currently use <a href="https://subversion.apache.org/">subversion</a>. However, some components use <a href="https://git-scm.com/">git</a>.
 </li>
 <li>Fortran Coding standard as well as style rules are enforced and anyone wishing to contribute to the Community Atmosphere Model must comply to these <a href="http://www.cesm.ucar.edu/working_groups/Software/dev_guide/dev_guide/node7.html">rules</a>.
