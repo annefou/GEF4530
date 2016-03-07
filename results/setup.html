@@ -59,6 +59,7 @@ On norStore (cruncher.norstore.uio.no), we will be using the following tools for
 <li><a href="https://www.ncl.ucar.edu/index.shtml">NCL (Ncar Command Language)</a></li>
 <li><a href="hep://nco.sourceforge.net">NCO (netCDF Operators)</a></li>
 <li><a href="http://www.giss.nasa.gov/tools/panoply/">Panoply netCDF, HDF and GRIB Data Viewer</a></li>
+<li><a href="https://www.continuum.io/downloads">Python Anaconda</a></li>
 </ul>
 <br>
 These packages are already installed on cruncher but every time you login on cruncher, you would need to setup your environment:
@@ -67,6 +68,7 @@ These packages are already installed on cruncher but every time you login on cru
 module load cdo
 module load ncl
 export PATH=/projects/NS1000K/panoply/4.4.3/:$PATH
+export PATH=/projects/NS1000K/python/anaconda/bin:$PATH
 </pre>
 </code>
 <br>
@@ -86,6 +88,18 @@ ncl -h
 </pre>
 </code>
 Same as for cdo but this time you will get the full usage of the ncl command.
+<br>
+<code>
+<pre>
+python --version
+</pre>
+</code>
+It should return:
+<code>
+<pre>
+Python 2.7.11 :: Anaconda 2.4.1 (64-bit)
+</pre>
+</code>
 <br>
 <br>
 <code>
