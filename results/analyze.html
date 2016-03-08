@@ -98,11 +98,11 @@ Several examples of plotting routines for NetCDF data can be downloaded from <a 
 <br>
 <br>
 <br>
-<h1 id="usingcdo">Using NCO and CDO</h1>
+<h2 id="usingcdo">Using NCO and CDO</h2>
 The model configuration that we use now has been set to output daily mean data. So every history file includes 30 days of daily data. Very often we are interested in monthly, seasonal and annual mean values as well. The model can be set to output those as well, but we have to make them from the daily output. To do this kind of processing NCO and CDO are very handy tools. 
 <br>
 <br>
-<h2 id="monthly">Making monthly mean data from daily data</h2>
+<h1 id="monthly">Making monthly mean data from daily data</h1>
 First we need to load the CDO and NCO modules on the machine we are on. On Cruncher NCO is available by default.
 <br>
 <br>
@@ -172,6 +172,84 @@ cdo ymonmean f2000.all.monmean.nc f2000.monthly_climatology.nc
 <br>
 <br>
 This can then be split into monthly files again if that is what you want. When you make climatologies over multiple years, remember that you need to remove the first part of the simulations as this does not necessearily have good data. We would like you to remove the first 2 years of the control simulation from the climatology.
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 id="pyplot">Plotting using python</h2>
+I, personally, use Python for plotting and visualising data. In the output directory on cruncher there is a copy of my python plotting code. You can use it and copy it as much as you like from there or from GitHub using
+<br>
+<br>
+<code>
+<pre>
+git clone https://github.com/hansbrenna/NetCDF_postprocessor.git
+</pre>
+</code>
+<br>
+on norstore (not on cruncher, git is not installed there for some reason.) In the folder there are many files and some of them have custom dependencies in the HB_module directory. This means that the files can't be copied around and run in from your current diretory. The ones that are most relevan for you are the ones called plotter5.py and one_d_plotter.py. These plot a 2D filled contour plot and a line plot of 1D data respectively. You're going to run the scripts away from their current directory, so the easiest way to acces them is to make an alias
+<br>
+<br>
+<code>
+<pre>
+alias plotter='python /projects/NS1000K/GEF4530/outputs/NetCDF_postprocessor/plotter5.py'
+alias plotter1d='python /projects/NS1000K/GEF4530/outputs/NetCDF_postprocessor/one_d_plotter.py'
+</pre>
+</code>
+<br>
+<br>
+The scripts work this way:
+<br>
+<br>
+<code>
+<pre>
+plotter -i -t 0 -lev yax -lat xax -lon mean -v U filename.nc
+plotter1d filename time U 
+</pre>
+</code>
+<br>
+<br>
+<br>
+You will probably have to customize the plotting yourself (or write something from scratch). Opening files and plotting the data is relatively simple using the xarray library for python. A bare-bones plotting script would look like this:
+<br>
+<br>
+<code>
+<pre>
+import numpy as np
+import pandas as pd
+import xarray
+import matplotlib
+import matplotlib.pyplot as plt
+
+filename = '/path/to/file/name.nc' #filename
+var = 'U' #variable name
+data = xarray.open_dataset(filename)
+
+v = getattr(data,var) #to get a variable from the dataset use getattr() or data.U (data.VARIABLENAME)
+
+#Decide what to plot
+vm = v.mean(dim=['time','lon']) #Do averaging over time and longitude. vm is now 2-dimensional vm(lev,lat)
+
+CF=plt.contourf(vm.lat,vn.lev,vm)
+plt.xlabel(vm.lat.name); plt.ylabel(vm.lev.name)
+plt.colorbar(CF)
+plt.show()
+
+</pre>
+</code>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
