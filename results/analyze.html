@@ -96,29 +96,80 @@ Python is a general purpose programming and scripting language which includes po
 Several examples of plotting routines for NetCDF data can be downloaded from <a href="https://github.com/hansbrenna/NetCDF_postprocessor">https://github.com/hansbrenna/NetCDF_postprocessor</a>
 <br>
 <br>
+<h1 id="usingcdo">Using NCO and CDO</h2>
+The model configuration that we use now has been set to output daily mean data. So every history file includes 30 days of daily data. Very often we are interested in monthly, seasonal and annual mean values as well. The model can be set to output those as well, but we have to make them from the daily output. To do this kind of processing NCO and CDO are very handy tools. 
 <br>
 <br>
+<h2 id="monthly">Making monthly mean data from daily data</h2>
+First we need to load the CDO and NCO modules on the machine we are on. On Cruncher NCO is available by default.
 <br>
 <br>
+<code>
+<pre>
+module load cdo
+module load nco #(On some machines)
+</pre>
+</code>
 <br>
 <br>
+I did it using a combination of NCO and CDO, but it is possible using just one. First I wanted to concatenate the history files into one, since CDO has an operator for calculating monthly means. Using NCO we concatenate using ncrcat
 <br>
 <br>
+<code>
+<pre>
+ncrcat f2000.*.nc ../../../../$USER/f2000.all.nc
+cd ../../../../$USER/
+cdo monmean f2000.all.nc f2000.all.monmean.nc
+</pre>
+</code>
 <br>
 <br>
+This takes a while. After creating monthly mean data in one big file, it can be nice to split it back up into yearly or monthly files to keep the filesize under control. This can be done using
 <br>
 <br>
+<code>
+<pre>
+cdo splityear f2000.all.monmean.nc f2000.
+cdo splitmon f2000.0001.nc f2000.0001-
+</pre>
+</code>
 <br>
 <br>
+and you have monthly data with filenames on the form f2000.0001-01.nc. 
 <br>
 <br>
+To make yearly averages you can use ncra (NetCDF record averager) from NCO
 <br>
 <br>
+<code>
+<pre>
+ncra f2000.0001.nc f2000.0001.mean.nc
+</pre>
+</code>
 <br>
 <br>
+To make monthly means over all the control run years (monthly climatology) you can use ncra again (for January)
 <br>
 <br>
+<code>
+<pre>
+ncra f2000.000*-01.nc  f2000.mean-01.nc
+</pre>
+</code>
 <br>
+<br>
+Or using CDO
+<br>
+<br>
+<code>
+<pre>
+cdo yearmean f2000.0001.nc f2000.0001.mean.nc
+cdo ymonmean f2000.all.monmean.nc f2000.monthly_climatology.nc
+</pre>
+</code>
+<br>
+<br>
+This can then be split into monthly files again if that is what you want. When you make climatologies over multiple years, remember that you need to remove the first part of the simulations as this does not necessearily have good data. We would like you to remove the first 2 years of the control simulation from the climatology.
 <br>
 <br>
 <br>
