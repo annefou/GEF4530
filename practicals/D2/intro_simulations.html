@@ -93,11 +93,14 @@ As before we start from Hans' experiment:
 </pre>
 </code>
 <br>
+<h2 id="duration">Setup your new experiment duration</h2>
 <br>
-Make sure you set the duration of your experiment properly. Here we wish to run 14 months from Hans' restart experiment:
+Before running the long simulation (14 months), you would like to check your new settings on a small experiment. You will first run 1 month experiment as we did for our first test. Then you will use the same experiment and continue it for the remaining 13 months.
+<br>
+Make sure you set the duration of your experiment properly. Here we wish to run 1 months from Hans' restart experiment:
 <code>
 <pre>
-./xmlchange -file env_run.xml -id STOP_N -val 14
+./xmlchange -file env_run.xml -id STOP_N -val 1
 ./xmlchange -file env_run.xml -id STOP_OPTION -val nmonths
 </pre>
 </code>
@@ -226,10 +229,6 @@ Now you are ready to submit your simulation.
 For all the other experiments, you would have to change the input dataset.
 <br>
 
-<h3 id="time">Adjust parameters for your long batch submission</h3>
-<br>
-Before submitting your experiment (f2000.T31T31.$EXPNAME.submit), you need to adjust <a href="https://en.wikipedia.org/wiki/Wall-clock_time">wall clock time</a> and adjust CPU resources.
- 
 <br>
 
 </body>

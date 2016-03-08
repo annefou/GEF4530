@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D2 - Introduce model experiments</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+        
+<h1>Running long experiments (14 months)</h1>
+<br>
+As for the previous exercice, you will work <b>in pairs</b> for this practical you will <b>analyze the model outputs in pairs</b>.
+<br>
+You will be using your previous experiment ~/cesm_case/f2000.T31T31.$EXPNAME (EXPNAME should be set depending on your experiment!) and continue to run 14 months.
+<br>
+<h3 id="continue">How to continue your previous experiment?</h3>
+
+<br>
+<h3 id="time">Set a new duration for your experiment</h3>
+Make sure you set the duration of your experiment properly. Here we wish to run 14 months from Hans' restart experiment:
+<code>
+<pre>
+./xmlchange -file env_run.xml -id STOP_N -val 14
+./xmlchange -file env_run.xml -id STOP_OPTION -val nmonths
+</pre>
+</code>
+<br>
+<h3 id="time">Adjust parameters for your long batch submission</h3>
+<br>
+Before submitting your experiment (f2000.T31T31.$EXPNAME.submit), you need to adjust <a href="https://en.wikipedia.org/wiki/Wall-clock_time">wall clock time</a> and adjust CPU resources.
+ 
+<br>
+
+</body>
+</html>
