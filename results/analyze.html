@@ -229,11 +229,17 @@ v = getattr(data,var) #to get a variable from the dataset use getattr() or data.
 
 #Decide what to plot
 vm = v.mean(dim=['time','lon']) #Do averaging over time and longitude. vm is now 2-dimensional vm(lev,lat)
+#To index you can use 
+#vm = v.isel(time=0,lon=32) # to get the first timestep and the 33rd longitude. vm is now 2-dimensional
 
+fig1 = plt.figure(1)
 CF=plt.contourf(vm.lat,vn.lev,vm)
 plt.xlabel(vm.lat.name); plt.ylabel(vm.lev.name)
 plt.colorbar(CF)
 plt.show()
+
+fig2 = plt.figure(2)
+plt.plot(v.mean(dim=['lev','lat','lon']))
 
 </pre>
 </code>
