@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D3 - Set up model experiments</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+        
+<h1>Introduce model experiments</h1>
+<br>
+<h2 id="experiments">List of experiments</h2>
+<br>
+<br>
+Run the experiment for 14 months starting on 1st of January until 1st of March the following year. For this use the same restart file you used for the short experiment.
+<ol>
+<li><b>EXPNAME=CO2</b>:Doubling/ Tripling of CO2 (change CO2 value to 2x367 ppm=734 ppm or 3x367 ppm = 1101 ppm > change the name list) </li>
+<li><b>EXPNAME=sea_ice</b>: Melt of Arctic sea ice (set sea ice fraction to zero North of 40N > change the input data set) </li>
+<li><b>EXPNAME=SST</b>: El Nino effect (add +5 K to tropical Central and East Pacific SST from 5S to 5N, 180W to 85W > change the input data set) </li>
+<li><b>EXPNAME=rocky</b>: Removal of Rocky Mountains (set surface Geopotential to 0 within ?N lat and ? Wlon > change the input data set) </li>
+</ol>
+<br>
+<br>
+<h2 id="setup">Setup your new experiment</h2>
+<br>
+
+<h3 id="create">Create a new case for your "long" experiment</h3>
+<br>
+Use an appropriate name for your new experiment depending on your experiment (doubling CO2, Sea ice, etc.). Suggested <b>EXPNAME</b> are given above.
+<br>
+Create a new case always involve executing create_newcase. 
+<br>
+<br>
+<font color="red">On Hexagon</font>:
+<br>
+<code>
+<pre>
+cd $HOME/cesm/cesm1_2_2/scripts
+
+# Adjust EXPNAME depending on your experiment (CO2, sea_ice, SST, rocky)
+
+export EXPNAME=CO2
+#
+# Simulation 2: Long simulation
+#
+./create_newcase -case ~/cesm_case/f2000.T31T31.$EXPNAME -res T31_T31 -compset F_2000_CAM5 -mach hexagon
+</pre>
+</code>
+<br>
+<br>
+Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.$EXPNAME corresponding to our new case (On Hexagon):
+
+<br>
+<code>
+<pre>
+# Make sure EXPNAME is correctly defined!
+
+cd ~/cesm_case/f2000.T31T31.$EXPNAME
+</pre>
+</code>
+
+<br>
+As before we start from Hans' experiment:
+<br>
+<font color="red">On Hexagon</font>:
+<br>
+<code>
+<pre>
+./xmlchange RUN_TYPE=hybrid
+./xmlchange RUN_REFCASE=f2000.T31T31.control
+./xmlchange RUN_REFDATE=0009-01-01
+</pre>
+</code>
+<br>
+<h2 id="duration">Setup your new experiment duration</h2>
+<br>
+Before running the long simulation (14 months), you would like to check your new settings on a small experiment. You will first run 1 month experiment as we did for our first test. Then you will use the same experiment and continue it for the remaining 13 months.
+<br>
+Make sure you set the duration of your experiment properly. Here we wish to run 1 months from Hans' restart experiment:
+<code>
+<pre>
+./xmlchange -file env_run.xml -id STOP_N -val 1
+./xmlchange -file env_run.xml -id STOP_OPTION -val nmonths
+</pre>
+</code>
+<br>
+
+<br>
+<br>
+Now we are ready to set-up our model configuration and build the cesm executable.
+<br>
+<br>
+<font color="red">On Hexagon</font>:
+<br>
+<code>
+<pre>
+./cesm_setup
+
+# Make sure EXPNAME is set properly!
+
+./f2000.T31T31.$EXPNAME.build
+
+</pre>
+</code>
+<br>
+<br>
+The default history file from CAM is a monthly average.  
+We can change the output frequency with the namelist variable
+<b>nhtfrq</b>
+<ul>
+<li>If nhtfrq=0, the file will be a monthly average </li>
+<li>If nhtfrq>0, frequency is input as number of timesteps. </li>
+<li>If nhtfrq<0, frequency is input as number of hours. </li>
+</ul>
+For instance to change the history file from monthly average to daily 
+average, we set the namelist variable nhtfrq = -24. We also need to do the following changes (to copy restart files in your running directory, etc.):
+<br>
+<br>
+<font color="red">On Hexagon</font>:
+<br>
+
+<code>
+<pre>
+cat >> user_nl_cam << EOF
+nhtfrq = -24
+EOF
+cat >> user_nl_cice << EOF
+grid_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
+kmt_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
+EOF
+
+# Make sure EXPNAME is set properly!      
+
+scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/f2000.T31T31.control.*.0009-01-01-00000.nc  /work/users/$USER/f2000.T31T31.$EXPNAME/run/.
+scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/rpointer.* /work/users/$USER/f2000.T31T31.$EXPNAME/run/.
+</pre>
+</code>
+<br>
+<br>
+<br>
+<br>
+<br>
+Now depending on your experiment case, you would have either to change the namelist or to change the input dataset.
+
+<br>
+<br>
+<br>
+<h3 id="namelist"><b>Doubling CO2</b>: how to update my namelist?</h3>
+<br>
+Namelists can be changed before configuring and building CESM but it can also be done before running your long simulation case. Then, you cannot use xmlchange and update the xml files, you need to directly change the namelist files.
+<br>
+
+To be able to double CO2, you first need to check the current CO2 value. Got to your case directory:
+<br>
+<code>
+<pre>
+# Make sure EXPNAME is correctly defined! (here CO2)
+
+cd ~/cesm_case/f2000.T31T31.$EXPNAME
+
+cd CaseDocs
+ls
+
+atm_in           docn_ocn_in                  ice_modelio.nml  rof_modelio.nml
+atm_modelio.nml  docn.streams.txt.prescribed  lnd_in           seq_maps.rc
+chem_mech.doc    drv_flds_in                  lnd_modelio.nml  wav_modelio.nml
+chem_mech.in     drv_in                       ocn_modelio.nml
+cpl_modelio.nml  glc_modelio.nml              README
+docn_in          ice_in                       rof_in
+</pre>
+</code>
+
+In CaseDocs, you can find all your namelists for your experiment. To check the current CO2 value, you can edit atm_in (<b>do not modify it!</b>) and search for co2vmr:
+<code>
+<pre>
+grep -i co2vmr atm_in
+</pre>
+</code>
+Change from co2vmr (year 200): 367.0e-6 to 734.0e-6 (3xCO2) or larger if you like in your user_nl_cam file (NOT in atm_in). Edit user_nl_cam and update its value. user_nl_cam is your case directory:
+<code>
+<pre>
+cd ~/cesm_case/f2000.T31T31.$EXPNAME
+ls user_nl_cam
+</pre>
+</code>
+<br>
+<img src="../../images/co2_namelist.png" align="middle" alt="" />
+<br>
+Then you can apply your changes and check again atm_in:
+<code>
+<pre>
+./preview_namelists
+
+cd CaseDocs
+
+# check and make sure your new value is set for cm2vmr
+
+grep co2vmr atm_in
+
+</pre>
+</code>
+
+Now you are ready to submit your simulation.
+
+<br>
+<h3 id="dataset">How to change the input dataset?</h3>
+<br>
+For all the other experiments, you would have to change the input dataset.
+<br>
+
+<br>
+
+</body>
+</html>
