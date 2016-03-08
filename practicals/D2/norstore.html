@@ -28,6 +28,9 @@ Released   : 20121026
 To post-process and visualize your model outputs, it is VERY IMPORTANT you move them from Hexagon to norStore. Remember that all model outputs are generated in a semi-temporary directory and all your files will be removed after a few weeks!
 <br>
 If you haven't set-up your SSH keys, the next commands (ssh and <a href="http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/">rsync</a>) will require you to enter your Unix password.
+<br>
+<br>
+<font color="red">On Hexagon</font>:
 <code>
 <pre>
 ssh login3.norstore.uio.no 'mkdir -p /projects/NS1000K/GEF4530/outputs/$USER/runs'
@@ -39,7 +42,9 @@ rsync -avz /work/users/$USER/archive/f2000.T31T31.test $USER@login3.norstore.uio
 </pre>
 </code>
 <br>
-Once the previous commands are successful, you are ready to post-process and visualize your data on cruncher.norstore.uio.no
+Once the previous commands are successful, you are ready to <a href="../../results.html">post-process and visualize</a> your data on cruncher.norstore.uio.no
+<br>
+<br>
 <br>
 <br>
 <br>

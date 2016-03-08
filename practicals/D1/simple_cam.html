@@ -51,6 +51,7 @@ To be able to compile and run CESM on hexagon, no changes to the source code wer
 <br> 
 To simplify and allow you to run CESM as quickly as possible, we have prepared a set-up script gef4530_notur.bash.
 <br>
+<br>
 <font color="red">On Hexagon</font>:
 <br>
 <code>
@@ -208,6 +209,7 @@ For this tests (and all our simulations), we do not wish to have a "cold" start 
 
 We use xmlchange, a small script to update variables (such as RUN_TYPE, RUN_REFCASE, etc.) defined in xml files. All the xml files contained in your test case directory will be used by cesm_setup to generate your configuration setup (Fortran namelist, etc.):
 <br>
+<br>
 <font color="red">On Hexagon</font>:
 <br>
 
@@ -226,6 +228,7 @@ To change the duration of our test simulation and set it to 1 month:
 </code>
 <br>
 Now we are ready to set-up our model configuration and build the cesm executable.
+<br>
 <br>
 <font color="red">On Hexagon</font>:
 <br>
@@ -262,6 +265,7 @@ We can change the output frequency with the namelist variable
 For instance to change the history file from monthly average to daily 
 average, we set the namelist variable nhtfrq = -24. We also need to do the following changes (to copy restart files in your running directory, etc.):
 <br>
+<br>
 <font color="red">On Hexagon</font>:
 <br>
 
@@ -281,7 +285,7 @@ scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.c
 </code>
 <br>
 <br>
-Now you can submit your test case to hexagon:
+Now you can submit your test case to <font color="red">hexagon</font>:
 <code>
 <pre>
     
@@ -296,7 +300,7 @@ Now you can submit your test case to hexagon:
 <br>
 The script "f2000.T31T31.test.submit" submits a job to the job scheduler on hexagon. More information can be found <a href="https://docs.hpc.uib.no/wiki/Job_execution_%28Hexagon%29">here</a>.
 <ul>
-<li>To monitor your job on hexagon:
+<li>To monitor your job on <font color="red">hexagon</font>:
 <br>
 <code>
 <pre>
