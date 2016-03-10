@@ -28,10 +28,10 @@ Released   : 20121026
 <br>
 Run the experiment for 14 months starting on 1st of January until 1st of March the following year. For this use the same restart file you used for the short experiment.
 <ol>
-<li><b>EXPNAME=CO2</b>:Doubling/ Tripling of CO2 (change CO2 value to 2x367 ppm=734 ppm or 3x367 ppm = 1101 ppm > change the name list) </li>
+<li><b>EXPNAME=CO2</b>:Tripling of CO2 (change CO2 value to 3x367 ppm = 1101 ppm > change the name list) </li>
 <li><b>EXPNAME=sea_ice</b>: Melt of Arctic sea ice (set sea ice fraction to zero North of 40N > change the input data set) </li>
-<li><b>EXPNAME=SST</b>: El Nino effect (add +5 K to tropical Central and East Pacific SST from 5S to 5N, 180W to 85W > change the input data set) </li>
-<li><b>EXPNAME=rocky</b>: Removal of Rocky Mountains (set surface Geopotential to 0 within ?N lat and ? Wlon > change the input data set) </li>
+<li><b>EXPNAME=SST</b>: Super El Nino (add +5 K to tropical Central and East Pacific SST from 5S to 5N, 180W to 85W > change the input data set) </li>
+<li><b>EXPNAME=rocky</b>: Lowering of Rocky Mountains (set surface Geopotential to 0 within 43.74 N lat and 110.8 Wlon > change the input data set) </li>
 </ol>
 <br>
 <br>
@@ -40,7 +40,7 @@ Run the experiment for 14 months starting on 1st of January until 1st of March t
 
 <h3 id="create">Create a new case for your "long" experiment</h3>
 <br>
-Use an appropriate name for your new experiment depending on your experiment (doubling CO2, Sea ice, etc.). Suggested <b>EXPNAME</b> are given above.
+Use an appropriate name for your new experiment depending on your experiment (tripling CO2, Sea ice, etc.). Suggested <b>EXPNAME</b> are given above.
 <br>
 Create a new case always involve executing create_newcase. 
 <br>
@@ -159,7 +159,7 @@ Now depending on your experiment case, you would have either to change the namel
 <br>
 <br>
 <br>
-<h3 id="namelist"><b>Doubling CO2</b>: how to update my namelist?</h3>
+<h3 id="namelist"><b>Tripling CO2</b>: how to update my namelist?</h3>
 <br>
 Namelists can be changed before configuring and building CESM but it can also be done before running your long simulation case. Then, you cannot use xmlchange and update the xml files, you need to directly change the namelist files.
 <br>
