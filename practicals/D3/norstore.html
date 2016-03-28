@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D3 - Store model outputs on norStore</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<h1 id="copy_norstore">Store model outputs on norStore</h1> 
+<br>
+ First make sure your run was successful and check all the necessary output files were generated.
+<br>
+To post-process and visualize your model outputs, it is VERY IMPORTANT you move them from Hexagon to norStore. Remember that all model outputs are generated in a semi-temporary directory and all your files will be removed after a few weeks!
+<br>
+If you haven't set-up your SSH keys, the next commands (ssh and <a href="http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/">rsync</a>) will require you to enter your Unix password.
+<br>
+Make sure you define EXPNAME properly (it depends on your experiment):
+<br>
+<font color="red">On Hexagon</font>:
+<code>
+<pre>
+# If you are running CO2 experiment (otherwise adjust: sea_ice, SST, rocky)
+export EXPNAME=CO2
+</pre>
+</code>
+
+Then copy files from hexagon to norStore project area:
+<br>
+<font color="red">On Hexagon</font>:
+<code>
+<pre>
+ssh login3.norstore.uio.no 'mkdir -p /projects/NS1000K/GEF4530/outputs/$USER/runs'
+ssh login3.norstore.uio.no 'mkdir -p /projects/NS1000K/GEF4530/outputs/$USER/archive'
+
+rsync -avz /work/users/$USER/f2000.T31T31.$EXPNAME $USER@login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/$USER/runs/.
+
+rsync -avz /work/users/$USER/archive/f2000.T31T31.$EXPNAME $USER@login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/$USER/archive/.
+</pre>
+</code>
+<br>
+Once the previous commands are successful, you are ready to <a href="../../results.html">post-process and visualize</a> your data on cruncher.norstore.uio.no
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

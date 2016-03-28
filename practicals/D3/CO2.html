@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : ColoreGiallo 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121026
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GEF4530 - Practicals D3 - Tripling CO2: namelist change</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+        
+<br>
+<br>
+The goal is to triple CO2 (EXPNAME=CO2): we need to change the namelist (change CO2 value to 3x367 ppm = 1101 ppm).
+<br>
+<br>
+<h3 id="namelist"><b>Tripling CO2</b>: how to update my namelist?</h3>
+<br>
+Namelists can be changed before configuring and building CESM but it can also be done before running your long simulation case. Then, you cannot use xmlchange and update the xml files, you need to directly change the namelist files.
+<br>
+
+To be able to triple CO2, you first need to check the current CO2 value. Got to your case directory:
+<br>
+<br>
+<font color="red">On Hexagon</font>:
+<br>
+<code>
+<pre>
+# Make sure EXPNAME is correctly defined! (here CO2)
+# export EXPNAME=CO2
+
+cd ~/cesm_case/f2000.T31T31.$EXPNAME
+
+cd CaseDocs
+ls
+
+atm_in           docn_ocn_in                  ice_modelio.nml  rof_modelio.nml
+atm_modelio.nml  docn.streams.txt.prescribed  lnd_in           seq_maps.rc
+chem_mech.doc    drv_flds_in                  lnd_modelio.nml  wav_modelio.nml
+chem_mech.in     drv_in                       ocn_modelio.nml
+cpl_modelio.nml  glc_modelio.nml              README
+docn_in          ice_in                       rof_in
+</pre>
+</code>
+
+In CaseDocs, you can find all your namelists for your experiment. To check the current CO2 value, you can edit atm_in (<b>do not modify it!</b>) and search for co2vmr:
+<code>
+<pre>
+grep -i co2vmr atm_in
+</pre>
+</code>
+Change from co2vmr (year 200): 367.0e-6 to 1101.0e-6 (3xCO2) in your user_nl_cam file (NOT in atm_in). Edit user_nl_cam and update its value. user_nl_cam is your case directory:
+<code>
+<pre>
+cd ~/cesm_case/f2000.T31T31.$EXPNAME
+ls user_nl_cam
+</pre>
+</code>
+<br>
+<img src="../../images/co2_namelist.png" align="middle" alt="" />
+<br>
+Then you can apply your changes and check again atm_in:
+<code>
+<pre>
+./preview_namelists
+
+cd CaseDocs
+
+# check and make sure your new value is set for cm2vmr
+
+grep co2vmr atm_in
+
+</pre>
+</code>
+<br>
+Before submitting your experiment, make sure you adjust the <a href="wallclock.html">wall clock time</a>!
+
+Now you are ready to submit your simulation:
+<br>
+<font color="red">On Hexagon</font>:
+<br>
+
+<code>
+<pre>
+cd ~/cesm_case/f2000.T31T31.$EXPNAME
+
+./f2000.T31T31.$EXPNAME.submit
+</pre>
+</code>
+<br>
+Once your short simulation is done, check the outputs: were your changes taken into account? Do you get significan results?
+
+If you are happy with your short run, you can setup your <a href="simulations.html">long run (14 months) experiment</a>.
+</body>
+</html>
