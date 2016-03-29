@@ -32,7 +32,7 @@ The goal is to triple CO2 (EXPNAME=CO2): we need to change the namelist (change 
 Namelists can be changed before configuring and building CESM but it can also be done before running your long simulation case. Then, you cannot use xmlchange and update the xml files, you need to directly change the namelist files.
 <br>
 
-To be able to triple CO2, you first need to check the current CO2 value. Got to your case directory:
+To be able to triple CO2, you first need to check the current CO2 value. Go to your case directory:
 <br>
 <br>
 <font color="red">On Hexagon</font>:
@@ -40,7 +40,7 @@ To be able to triple CO2, you first need to check the current CO2 value. Got to 
 <code>
 <pre>
 # Make sure EXPNAME is correctly defined! (here CO2)
-# export EXPNAME=CO2
+export EXPNAME=CO2
 
 cd ~/cesm_case/f2000.T31T31.$EXPNAME
 
@@ -62,7 +62,11 @@ In CaseDocs, you can find all your namelists for your experiment. To check the c
 grep -i co2vmr atm_in
 </pre>
 </code>
-Change from co2vmr (year 200): 367.0e-6 to 1101.0e-6 (3xCO2) in your user_nl_cam file (NOT in atm_in). Edit user_nl_cam and update its value. user_nl_cam is your case directory:
+Change from co2vmr (year 2000) i.e. 367.0e-6 to 1101.0e-6 (3xCO2) in your user_nl_cam file (NOT in atm_in). 
+<ol>
+<li>Edit user_nl_cam and update its value. </li>
+<li>user_nl_cam is your case directory:</li>
+</ol>
 <code>
 <pre>
 cd ~/cesm_case/f2000.T31T31.$EXPNAME
@@ -101,8 +105,30 @@ cd ~/cesm_case/f2000.T31T31.$EXPNAME
 </pre>
 </code>
 <br>
-Once your short simulation is done, check the outputs: were your changes taken into account? Do you get significan results?
+Once your short simulation is done, check the outputs: were your changes taken into account? Do you get significant results?
 
 If you are happy with your short run, you can setup your <a href="simulations.html">long run (14 months) experiment</a>.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
 </html>

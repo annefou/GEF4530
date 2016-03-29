@@ -27,7 +27,7 @@ Released   : 20121026
 <br>
 To post-process and visualize your model outputs, it is VERY IMPORTANT you move them from Hexagon to norStore. Remember that all model outputs are generated in a semi-temporary directory and all your files will be removed after a few weeks!
 <br>
-If you haven't set-up your SSH keys, the next commands (ssh and <a href="http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/">rsync</a>) will require you to enter your Unix password.
+If you haven't set-up your <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">SSH keys</a>, the next commands (ssh and <a href="http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/">rsync</a>) will require you to enter your Unix password.
 <br>
 Make sure you define EXPNAME properly (it depends on your experiment):
 <br>
@@ -55,6 +55,8 @@ rsync -avz /work/users/$USER/archive/f2000.T31T31.$EXPNAME $USER@login3.norstore
 <br>
 Once the previous commands are successful, you are ready to <a href="../../results.html">post-process and visualize</a> your data on cruncher.norstore.uio.no
 <br>
+<br>
+However, as your simulation is stored on the norStore project area, you can now <a href="archive.html">archive your experiment</a> on the norStore archive (long-term archive i.e. several years).
 <br>
 <br>
 <br>

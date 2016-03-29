@@ -26,13 +26,22 @@ Released   : 20121026
 <h2 id="experiments">List of experiments</h2>
 <br>
 <br>
-The goal is to run the experiment of your choice for 14 months starting on 1st of January until 1st of March the following year. For this use the same restart file you used for the short experiment.
+The goal is to run the experiment of your choice for 14 months starting on 1st of January until 1st of March the following year. For this use the same restart file you used for the test experiment. Each of the 4 experiments is given an experiment name:
 <ol>
 <li><b>EXPNAME=CO2</b>:Tripling of CO2 (change CO2 value to 3x367 ppm = 1101 ppm > change the name list) </li>
 <li><b>EXPNAME=sea_ice</b>: Melt of Arctic sea ice (set sea ice fraction to zero North of 40N > change the input data set) </li>
 <li><b>EXPNAME=SST</b>: Super El Nino (add +5 K to tropical Central and East Pacific SST from 5S to 5N, 180W to 85W > change the input data set) </li>
 <li><b>EXPNAME=rocky</b>: Lowering of Rocky Mountains (set surface Geopotential to 0 from 30N to 50N and 125W to 100W > change the input data set) </li>
 </ol>
+<br>
+Make sure you define an environment variable EXPNAME, every time you login <font color="red">on Hexagon</font>:
+<br>
+<code>
+<pre>
+# define an environment variable for your experiment (CO2, sea_ice, SST, rocky)
+export EXPNAME=CO2
+</code>
+</pre>
 <br>
 Here is the list of tasks to perform for the experiment of your choice:
 <br>
@@ -67,7 +76,7 @@ export EXPNAME=CO2
 </code>
 <br>
 <br>
-Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.$EXPNAME corresponding to our new case.
+Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.$EXPNAME corresponding to your new case.
 <br>
 <font color="red">On Hexagon</font>:
 <br>
@@ -82,7 +91,7 @@ cd ~/cesm_case/f2000.T31T31.$EXPNAME
 </code>
 
 <br>
-As before we start from the control's experiment:
+As before we start from the control experiment:
 <br>
 <font color="red">On Hexagon</font>:
 <br>
@@ -96,9 +105,10 @@ As before we start from the control's experiment:
 <br>
 <h3 id="duration">Setup your new experiment duration</h3>
 <br>
-Before running the long simulation (14 months), you would like to check your new settings on a small experiment. You will first run 1 month experiment as we did for our first test. Then you will use the same experiment and continue it for the remaining 13 months.
+Before running the long simulation (14 months), you would like to check your new settings on a short experiment. You will first run 5 days; check the results and then restart the same experiment for 14 months.
 <br>
-Make sure you set the duration of your experiment properly. Here we wish to run 1 months from Hans' restart experiment:
+Make sure you set the duration of your experiment properly. Here we wish to run 5 days from the control experiment:
+<br>
 <code>
 <pre>
 ./xmlchange -file env_run.xml -id STOP_N -val 5
@@ -107,9 +117,7 @@ Make sure you set the duration of your experiment properly. Here we wish to run 
 </code>
 <br>
 
-<br>
-<br>
-Now we are ready to set-up our model configuration and build the cesm executable.
+Now we are ready to set-up the model configuration and build the cesm executable.
 <br>
 <br>
 <font color="red">On Hexagon</font>:
@@ -135,7 +143,7 @@ We can change the output frequency with the namelist variable
 <li>If nhtfrq<0, frequency is input as number of hours. </li>
 </ul>
 For instance to change the history file from monthly average to daily 
-average, we set the namelist variable nhtfrq = -24. We also need to do the following changes (to copy restart files in your running directory, etc.):
+average, we set the namelist variable nhtfrq = -24. We also need to copy restart files in your running directory, etc.:
 <br>
 <br>
 <font color="red">On Hexagon</font>:
@@ -157,9 +165,6 @@ scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.c
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/rpointer.* /work/users/$USER/f2000.T31T31.$EXPNAME/run/.
 </pre>
 </code>
-<br>
-<br>
-<br>
 <br>
 <br>
 Now depending on your experiment case, you would have either to change the namelist or to change the input dataset.
