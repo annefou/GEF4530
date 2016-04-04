@@ -153,7 +153,7 @@ average, we set the namelist variable nhtfrq = -24. We also need to copy restart
 <pre>
 cat >> user_nl_cam << EOF
 nhtfrq = 0,-24
-fincl2 = T, U, V, PS, PO, OMEGA
+fincl2 = 'T', 'U', 'V', 'PS', 'PO', 'OMEGA'
 EOF
 cat >> user_nl_cice << EOF
 grid_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
