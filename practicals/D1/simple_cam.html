@@ -23,7 +23,7 @@ Released   : 20121026
 <body>
 <br>
 <br>
-We do all the practicals on <font color="red"> Hexagon</font>.
+We do all the practicals on <font color="red"> Abel</font>.
 <br>
 <ul>
 <li><a href="#gef4530_setup">GEF4530 Notur Initialization</a></li>
@@ -40,27 +40,26 @@ We do all the practicals on <font color="red"> Hexagon</font>.
 Make sure you have set-up your SSH keys properly and you can transfer files with scp without entering your password. If not go <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">here</a>.
 <br>
 <br>
-To run CAM-5.3 on hexagon, we will use:
+To run CAM-5.3 on abel, we will use:
 <ul>
 <li><font color="green">Subversion client (version 1.6.7) to get CESM source code</font></li>
 <li>Fortran and C compilers (pgi 15.3.0 compilers) </li>
 <li>NetCDF library (netcdf4.3.3.1) </li>
 <li>MPI (Cray mpich 7.2.5) </li>
 </ul>
-To be able to compile and run CESM on hexagon, no changes to the source code were necessary; we just had to adapt a few scripts for setting the compilers and libraries used by CESM.
+To be able to compile and run CESM on abel, no changes to the source code were necessary; we just had to adapt a few scripts for setting the compilers and libraries used by CESM.
 <br> 
 To simplify and allow you to run CESM as quickly as possible, we have prepared a set-up script gef4530_notur.bash.
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
-scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/setup/gef4530_notur.bash $HOME/.
-
 cd $HOME
 
-chmod u+x ./gef4530_notur.bash
+git clone https://github.uio.no/annefou/GEF4530.git
+cd $HOME/GEF4530/setup
 
 ./gef4530_notur.bash
 </pre>
@@ -87,7 +86,7 @@ The basic workflow to run the CESM code is the following:
 <br>
 To create a new case, we will be using create_newcase script. It is located in $HOME/cesm/cesm1_2_2/scripts.
 <br>
-There are many options and we won't discuss all of them. To get the full usage of create_newcase (<font color="red">On Hexagon</font>):
+There are many options and we won't discuss all of them. To get the full usage of create_newcase (<font color="red">On Abel</font>):
 <br>
 <code>
 <pre>
@@ -100,7 +99,7 @@ The 4 main arguments of create_newcase are explained on the figure below:
 <br>
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
@@ -109,7 +108,9 @@ cd $HOME/cesm/cesm1_2_2/scripts
 #
 # Simulation 1: short simulation
 #
-./create_newcase -case ~/cesm_case/f2000.T31T31.test -res T31_T31 -compset F_2000_CAM5 -mach hexagon
+module load cesm/1.2.2
+
+./create_newcase -case ~/cesm_case/f2000.T31T31.test -res T31_T31 -compset F_2000_CAM5 -mach abel
 </pre>
 </code>
 <br>
@@ -179,10 +180,10 @@ In our case we have:
 
 <br>
 </li>
-<li><b>mach</b>: specifies the machine where CESM will be compiled and run. We will be running CESM on hexagon (a set of scripts for hexagon can be found in $HOME/cesm/cesm1_2_2/scripts/ccsm_utils/Machines) </li>
+<li><b>mach</b>: specifies the machine where CESM will be compiled and run. We will be running CESM on abel (a set of scripts for abel can be found in $HOME/cesm/cesm1_2_2/scripts/ccsm_utils/Machines) </li>
 </ul>
 <br>
-Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.test corresponding to our new case (<font color="red">On Hexagon</font>):
+Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.test corresponding to our new case (<font color="red">On Abel</font>):
 <br>
 <br>
 <code>
@@ -197,7 +198,7 @@ Check the content of the directory and browse the sub-directories:
 For this tests (and all our simulations), we do not wish to have a "cold" start and we will therefore restart and continue an existing simulation we have previously run.
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
@@ -210,7 +211,7 @@ For this tests (and all our simulations), we do not wish to have a "cold" start 
 We use xmlchange, a small script to update variables (such as RUN_TYPE, RUN_REFCASE, etc.) defined in xml files. All the xml files contained in your test case directory will be used by cesm_setup to generate your configuration setup (Fortran namelist, etc.):
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 
 <code>
@@ -230,7 +231,7 @@ To change the duration of our test simulation and set it to 1 month:
 Now we are ready to set-up our model configuration and build the cesm executable.
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
@@ -266,7 +267,7 @@ For instance to change the history file from monthly average to daily
 average, we set the namelist variable nhtfrq = -24. We also need to do the following changes (to copy restart files in your running directory, etc.):
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 
 <code>
@@ -285,7 +286,7 @@ scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.c
 </code>
 <br>
 <br>
-Now you can submit your test case to <font color="red">hexagon</font>:
+Now you can submit your test case to <font color="red">abel</font>:
 <code>
 <pre>
     
@@ -298,9 +299,9 @@ Now you can submit your test case to <font color="red">hexagon</font>:
 <h2 id="monitor_case">Monitor your test run</h2>
 <br>
 <br>
-The script "f2000.T31T31.test.submit" submits a job to the job scheduler on hexagon. More information can be found <a href="https://docs.hpc.uib.no/wiki/Job_execution_%28Hexagon%29">here</a>.
+The script "f2000.T31T31.test.submit" submits a job to the job scheduler on abel. More information can be found <a href="http://www.uio.no/english/services/it/research/hpc/abel/help/user-guide/">here</a>.
 <ul>
-<li>To monitor your job on <font color="red">hexagon</font>:
+<li>To monitor your job on <font color="red">abel</font>:
 <br>
 <code>
 <pre>
@@ -311,7 +312,7 @@ qstat -u $USER
 </li>
 </ul>
 <br>
-Full list of available commands and their usage can be found <a href="https://docs.hpc.uib.no/wiki/Job_execution_%28Hexagon%29#Manage_a_job_.28submission.2C_monitoring.2C_suspend.2Fresume.2C_canceling.29">here</a>.
+Full list of available commands and their usage can be found <a href="http://www.uio.no/english/services/it/research/hpc/abel/help/user-guide/queue-system.html">here</a>.
 <br>
 <br>
 <br>
