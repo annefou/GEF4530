@@ -31,7 +31,7 @@ Released   : 20121026
     <li><a href="#Mac">From a Mac laptop</a></li>
     <li><a href="#Windows">From a Windows laptop</a></li>
   </ul>
-<li><a href="#Login">Check access to Notur Computing facility (Hexagon) and NorStore (cruncher)</a></li>
+<li><a href="#Login">Check access to Notur Computing facility (Abel) and NorStore (cruncher)</a></li>
 <li><a href="#SSH_keys">Check for SSH keys</a></li>
 <li><a href="#Analysis">Check Post-processing and Visualization Software</a></li>
 </ul>
@@ -40,7 +40,7 @@ Released   : 20121026
 <br>
 <h2 id="Remote">Check Remote Connection</h2>
 
-To be able to connect to the High-performance Computing Machine where CAM-5.3 (Hexagon) will be run and on the norStore facility (cruncher) to post-process your model results, you need to be able to run Remote X11 applications.
+To be able to connect to the High-performance Computing Machine where CAM-5.3 (Abel) will be run and on the norStore facility (cruncher) to post-process your model results, you need to be able to run Remote X11 applications.
 <br>
 <br>
 <h3 id="Linux" >From a Linux laptop</h3>
@@ -48,7 +48,7 @@ The tool on Linux for connecting to a remote system using SSH is called, unsurpr
 <p> Launch a terminal from your desktop’s application menu and you will see the bash shell. There are other shells, but most Linux distributions use bash by default.</p>
 <img src="../../images/linux_terminal.png" width="600" alt="" />
 <br>
-Then check you can <a href="#Login">login both on Hexagon (CRAY HPC computing facility) and Cruncher (norstore storage facility)</a>.
+Then check you can <a href="#Login">login both on Abel (HPC computing facility) and Cruncher (norstore storage facility)</a>.
 <br>
 <br>
 <i><b>Please report any problems.</b></i>
@@ -67,7 +67,7 @@ If you haven't done it yet, install xcode:
 </ul>
 Mac OS X has a built-in SSH client called Terminal which can be used to connect to remote servers. By default, Terminal.app is located in Applications -> Utilities folder. Double-click on the icon to start the client.
 
-Then check you can <a href="#Login">login both on Hexagon (CRAY HPC computing facility) and Cruncher (norstore storage facility)</a>.
+Then check you can <a href="#Login">login both on Abel (HPC computing facility) and Cruncher (norstore storage facility)</a>.
 <br>
 <i><b>Please report any problems.</b></i>
 <br>
@@ -100,20 +100,20 @@ There are many "Session types" to choose from. We recommend a KDE session. Use y
 <b>Note</b>: If you have a firewall installed on your computer you will need to allow remote hosts access to the X-server.
 <br>
 <i><b>Please report any problems.</b></i>
-Then open a terminal and check you can <a href="#Login">login both on Hexagon (CRAY HPC computing facility) and Cruncher (norstore storage facility)</a>.
+Then open a terminal and check you can <a href="#Login">login both on Abel (HPC computing facility) and Cruncher (norstore storage facility)</a>.
 <br>
 <br>
-<h2 id="Login">Login to Notur (Hexagon) and NorStore (cruncher)</h2>
+<h2 id="Login">Login to Notur (Abel) and NorStore (cruncher)</h2>
 <br>
-In this section, you should check you can access both <a href="https://docs.hpc.uib.no/wiki/Main_Page">Hexagon</a> (where you will run <a href="">CAM-5</a>) and <a href="https://www.sigma2.no/content/norstore-services">Cruncher</a> (where you will pos t-process and visualize the results of your model runs).
+In this section, you should check you can access both <a href="https://docs.hpc.uib.no/wiki/Main_Page">Abel</a> (where you will run <a href="">CAM-5</a>) and <a href="https://www.sigma2.no/content/norstore-services">Cruncher</a> (where you will pos t-process and visualize the results of your model runs).
 <code>
 <pre>
-ssh -Y $LOGNAME@hexagon.hpc.uib.no
+ssh -Y $LOGNAME@abel.uio.no
 </pre>
 </code>
 where $LOGNAME is your UIO username (replace it by your own username!)
 <br>
-More documentation on hexagon can be found <a href="https://docs.hpc.uib.no/wiki/FAQ_%28Hexagon%29">here</a>.
+More documentation on abel can be found <a href="http://www.uio.no/english/services/it/research/hpc/abel/">here</a>.
 <br>
 <br>
 Post-processing and visualization will be performed on NorStore facility cruncher.norstore.uio.no:
@@ -127,7 +127,7 @@ where $LOGNAME is your UIO username (replace it by your own username!)
 Documentation on norStore facility can be found <a href="https://www.sigma2.no/node/8">here</a>.
 <br>
 <br>
-Please note that these machines are not accessible outside the UIO networks. If you wish to login on hexagon or cruncher outside the UIO network, use 
+Please note that these machines are not accessible outside the UIO networks. If you wish to login on abel or cruncher outside the UIO network, use 
 <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/x2go.html">X2Go Client</a>. 
 <br>
 <br>

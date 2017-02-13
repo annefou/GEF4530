@@ -34,7 +34,7 @@ The goal is to run the experiment of your choice for 14 months starting on 1st o
 <li><b>EXPNAME=rocky</b>: Lowering of Rocky Mountains (set surface Geopotential to 0 from 30N to 50N and 125W to 100W > change the input data set) </li>
 </ol>
 <br>
-Make sure you define an environment variable EXPNAME, every time you login <font color="red">on Hexagon</font>:
+Make sure you define an environment variable EXPNAME, every time you login <font color="red">on Abel</font>:
 <br>
 <code>
 <pre>
@@ -59,7 +59,7 @@ Use an appropriate name for your new experiment depending on your experiment (tr
 Create a new case always involve executing create_newcase. 
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
@@ -71,14 +71,14 @@ export EXPNAME=CO2
 #
 # Simulation 2: Long simulation
 #
-./create_newcase -case ~/cesm_case/f2000.T31T31.$EXPNAME -res T31_T31 -compset F_2000_CAM5 -mach hexagon
+./create_newcase -case ~/cesm_case/f2000.T31T31.$EXPNAME -res T31_T31 -compset F_2000_CAM5 -mach abel
 </pre>
 </code>
 <br>
 <br>
 Now you should have a new directory in $HOME/cesm_case/f2000.T31T31.$EXPNAME corresponding to your new case.
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 
 <br>
@@ -93,7 +93,7 @@ cd ~/cesm_case/f2000.T31T31.$EXPNAME
 <br>
 As before we start from the control experiment:
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
@@ -120,7 +120,7 @@ Make sure you set the duration of your experiment properly. Here we wish to run 
 Now we are ready to set-up the model configuration and build the cesm executable.
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 <code>
 <pre>
@@ -146,7 +146,7 @@ For instance to change the history file from monthly average to daily
 average, we set the namelist variable nhtfrq = -24. We also need to copy restart files in your running directory, etc.:
 <br>
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <br>
 
 <code>

@@ -25,13 +25,13 @@ Released   : 20121026
 <br>
  First make sure your run was successful and check all the necessary output files were generated.
 <br>
-To post-process and visualize your model outputs, it is VERY IMPORTANT you move them from Hexagon to norStore. Remember that all model outputs are generated in a semi-temporary directory and all your files will be removed after a few weeks!
+To post-process and visualize your model outputs, it is VERY IMPORTANT you move them from Abel to norStore. Remember that all model outputs are generated in a semi-temporary directory and all your files will be removed after a few weeks!
 <br>
 If you haven't set-up your <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/ssh-tips-and-tricks.html">SSH keys</a>, the next commands (ssh and <a href="http://www.tecmint.com/rsync-local-remote-file-synchronization-commands/">rsync</a>) will require you to enter your Unix password.
 <br>
 Make sure you define EXPNAME properly (it depends on your experiment):
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <code>
 <pre>
 # If you are running CO2 experiment (otherwise adjust: sea_ice, SST, rocky)
@@ -39,9 +39,9 @@ export EXPNAME=CO2
 </pre>
 </code>
 
-Then copy files from hexagon to norStore project area:
+Then copy files from abel to norStore project area:
 <br>
-<font color="red">On Hexagon</font>:
+<font color="red">On Abel</font>:
 <code>
 <pre>
 ssh login3.norstore.uio.no 'mkdir -p /projects/NS1000K/GEF4530/outputs/$USER/runs'
