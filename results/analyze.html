@@ -178,16 +178,9 @@ This can then be split into monthly files again if that is what you want. When y
 <br>
 <br>
 <h2 id="pyplot">Plotting using python</h2>
-I, personally, use Python for plotting and visualising data. In the output directory on cruncher there is a copy of my python plotting code. You can use it and copy it as much as you like from there or from GitHub using
-<br>
-<br>
-<code>
-<pre>
-git clone https://github.com/hansbrenna/NetCDF_postprocessor.git
-</pre>
-</code>
-<br>
-on norstore (not on cruncher, git is not installed there for some reason.) In the folder there are many files and some of them have custom dependencies in the HB_module directory. This means that the files can't be copied around and run in from your current diretory. The ones that are most relevan for you are the ones called plotter5.py and one_d_plotter.py. These plot a 2D filled contour plot and a line plot of 1D data respectively. You're going to run the scripts away from their current directory, so the easiest way to acces them is to make an alias
+You can use Python for plotting and visualising data. 
+In the output directory on cruncher there is a copy of Hans' python plotting code. 
+To use the pre-installed version on cruncher:
 <br>
 <br>
 <code>
@@ -196,6 +189,8 @@ alias plotter='python /projects/NS1000K/GEF4530/outputs/NetCDF_postprocessor/plo
 alias plotter1d='python /projects/NS1000K/GEF4530/outputs/NetCDF_postprocessor/one_d_plotter.py'
 </pre>
 </code>
+<br>
+<br>
 <br>
 <br>
 The scripts work this way:
@@ -209,8 +204,19 @@ plotter1d filename time U
 </code>
 <br>
 <br>
+You will probably have to customize the plotting yourself (or write something from scratch). 
+For developing your own python plotting routines, you can copy it and make as much changes as you like. On cruncher: 
 <br>
-You will probably have to customize the plotting yourself (or write something from scratch). Opening files and plotting the data is relatively simple using the xarray library for python. A bare-bones plotting script would look like this:
+<code>
+<pre>
+git clone https://github.com/hansbrenna/NetCDF_postprocessor.git
+</pre>
+</code>
+<br>
+In the folder called "NetCDF_postprocessor", there are many files and some of them have custom dependencies in the HB_module directory. This means that the files can't be copied around and run in from your current directory. The ones that are most relevant for you are the ones called plotter5.py and one_d_plotter.py. These plot a 2D filled contour plot and a line plot of 1D data respectively. 
+<br>
+<br>
+Opening files and plotting the data is relatively simple using the xarray library for python. A bare-bones plotting script would look like this:
 <br>
 <br>
 <code>
@@ -243,11 +249,6 @@ plt.plot(v.mean(dim=['lev','lat','lon']))
 
 </pre>
 </code>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
