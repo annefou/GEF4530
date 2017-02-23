@@ -269,24 +269,53 @@ average, we set the namelist variable nhtfrq = -24. We also need to do the follo
 <br>
 <font color="red">On Abel</font>:
 <br>
-
+To get daily average instead of monthly, we need to add one line to the CAM5 namelist (called user_nl_cam):
 <code>
 <pre>
 cat >> user_nl_cam << EOF
 nhtfrq = -24
 EOF
+</pre>
+</code>
+<b><a href="http://www.linfo.org/cat.html">cat</a></b> is a unix shell command to display the content of files or combine and create files. Using &gt;&gt; followed by a filename (here user_nl_cam) means we wish to concatenate information to a file. If it does not exist, it is automatically created. Using &lt;&lt; followed by a string (here EOF) means that the content we wish to concatenate is not in a file but written after EOF until another EOF is found.
+<br>
+Now, we do the same but for the cice namelist called <b>user_nl_cice</b>:
+<code>
+<pre>
 cat >> user_nl_cice << EOF
 grid_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
 kmt_file = '/work/users/$USER/inputdata/share/domains/domain.ocn.48x96_gx3v7_100114.nc'
 EOF
-      
+</code>
+</pre>
+<br>
+Finally, we copy the control restart files (contains the state of the model at a given time so we can restart it). The files are stored on norStore; they were generated from a previous simulations where we have run the model for several years):      
+<code>
+<pre>
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/f2000.T31T31.control.*.0009-01-01-00000.nc  /work/users/$USER/f2000.T31T31.test/run/.
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/rpointer.* /work/users/$USER/f2000.T31T31.test/run/.
 </pre>
 </code>
 <br>
 <br>
-Now you can submit your test case to <font color="red">abel</font>:
+Now we wish to run our model and as it may run for several days, we need to use the batch scheduler (SLURM) from abel. Its role is to dispatch jobs to be run on the cluster. It reads information given in your job command file (named here f2000.T31T31.test.run). This file contains information on the number of processors to use (ntasks), the amount of memory per processor (mem-per-cpu) and the maximum amount of time you wish to allow for your job (time). 
+<br>
+Check what is in your current job command file (f2000.T31T31.test.run):
+<code>
+<pre>
+#SBATCH --job-name=f2000.T31T31.test
+#SBATCH --time=08:59:00
+#SBATCH --ntasks=32
+#SBATCH --account=nn1000k
+#SBATCH --mem-per-cpu=4G
+#SBATCH --cpus-per-task=1
+#SBATCH --output=slurm.out
+</pre>
+</code>
+<br>
+The lines starting with <b>#SBATCH</b> are not comments but SLURM directives. 
+<br>
+You can submit your test case to <font color="red">abel</font>:
 <code>
 <pre>
     
