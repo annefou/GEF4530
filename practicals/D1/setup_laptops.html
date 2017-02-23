@@ -116,13 +116,31 @@ where $LOGNAME is your UIO username (replace it by your own username!)
 More documentation on abel can be found <a href="http://www.uio.no/english/services/it/research/hpc/abel/">here</a>.
 <br>
 <br>
-Post-processing and visualization will be performed on NorStore facility cruncher.norstore.uio.no:
+Post-processing will be performed on NorStore facility cruncher.norstore.uio.no:
 <code>
 <pre>
 ssh -Y $LOGNAME@cruncher.norstore.uio.no
 </pre>
 </code>
 where $LOGNAME is your UIO username (replace it by your own username!)
+<br>
+<br>
+For visualization, you may use cruncher but the most suitable machine is called viz2. Check first that you have access to the machine:
+<code>
+<pre>
+ssh -Y $LOGNAME@viz2.norstore.uio.no
+</pre>
+</code>
+<br>
+Report any problems, in particular if you don't have access to viz2. 
+<br>
+<b>Once you know you have access to viz2.norstore.uio.no, you will never login to this machine with ssh. We will give you scripts to make use of the GPUs and quickly visualize your data from your laptop or local machine</b>.
+<br>
+To use viz2, you need to install turboVNC on your laptop (make sure you take the exact version we give so you can connect to the mahine):
+<ul>
+<li>http://sourceforge.net/projects/turbovnc/files/2.0.1/</li>
+<li>Make sure your ssh keys are properly set-up (otherwise you will have to enter your password many times!)</li>
+</ul>
 <br>
 Documentation on norStore facility can be found <a href="https://www.sigma2.no/node/8">here</a>.
 <br>
