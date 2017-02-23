@@ -280,6 +280,9 @@ EOF
 <b><a href="http://www.linfo.org/cat.html">cat</a></b> is a unix shell command to display the content of files or combine and create files. Using &gt;&gt; followed by a filename (here user_nl_cam) means we wish to concatenate information to a file. If it does not exist, it is automatically created. Using &lt;&lt; followed by a string (here EOF) means that the content we wish to concatenate is not in a file but written after EOF until another EOF is found.
 <br>
 Now, we do the same but for the cice namelist called <b>user_nl_cice</b>:
+<br>
+<font color="red">On Abel</font>:
+<br>
 <code>
 <pre>
 cat >> user_nl_cice << EOF
@@ -290,6 +293,9 @@ EOF
 </pre>
 <br>
 Finally, we copy the control restart files (contains the state of the model at a given time so we can restart it). The files are stored on norStore; they were generated from a previous simulations where we have run the model for several years):      
+<br>
+<font color="red">On Abel</font>:
+<br>
 <code>
 <pre>
 scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.control/run/f2000.T31T31.control.*.0009-01-01-00000.nc  /work/users/$USER/f2000.T31T31.test/run/.
