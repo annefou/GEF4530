@@ -23,6 +23,7 @@ Released   : 20121026
 <body>
         
 <h1>Check the 1 month test run</h1>
+<font color="red">On Abel</font>:
 During your test case run, CAM-5.3 generates outputs in the "run" directory:
 <br>
 <br>
@@ -33,6 +34,7 @@ At the end of your run, the run directory will only contain files that are neede
 <img src="../../images/archivedir_test.png" align="middle" alt="" />
 <br>
 Check your run was successful and generated all the necessary files you need for your analysis.
+<font color="red">On Abel</font>:
 <code>
 <pre>
 cd /work/users/$USER/f2000.T31T31.test/run
@@ -43,6 +45,24 @@ ls -lrt
 </pre>
 </code>
 You should see a number of netCDF files (each of them ends with ".nc").
+<br>
+
+You can quickly visualize your data on abel (to make sure your simulation ran OK):
+<font color="red">On Abel</font>:
+<code>
+<pre>
+cd /work/users/$USER/archive/f2000.T31T31.test/atm/hist
+module load ncview
+ncview f2000.T31T31.test.cam.h0.0001-01-31-00000.nc
+</pre>
+</code>
+If you click on 3D or 4D to select a variable, your data should appear:
+<br>
+
+<img src="../../images/ncview_D2.png" width="600"/>
+<br>
+Here, PS (2D variable) is plotted.
+<br>
 <br>
 Now you are ready to <a href="norstore.html">move your files on norStore</a>.
 <br>

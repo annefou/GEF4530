@@ -24,12 +24,129 @@ Released   : 20121026
         
 <h1>Post-processing and Visualization</h1>
 
-<h2>Post-processing on cruncher</h2>
+You will be using both cruncher (cruncher.norstore.uio.no) and viz2 (viz2.norstore.uio.no) to post-process your data (cruncher) and visualize your data (viz2).
+<br>
+<ul>
+<li> <a href="#Panoply">Visualize your model outputs with Panoply</a></li>
+<li><a href="#Workflow">Post-processing workflow: example with the control experiment</li>
+<li><a href="#SPARC">SPARC climatology</a></li>
+<li><a href="#Ex1">Exercice-1</a></li>
+<br>
+<h4 id="Panoply">Visualization with Panoply</h4>
 
-Cruncher (cruncher.norstore.uio.no) is a machine you can use to post-process your model outputs once you have <a href="norstore.html">stored them on norStore</a>.
+Panoply is installed on norStore visualization platform viz2 (viz2.norstore.uio.no). To ease the usage of viz2, we have created a script to connect and set-up your environment.
+<br>
+Make sure you have all the requirements for using viz2. See <a href="../D1/setup_laptops.html#Visualization">here</a> to set-up your laptop or local machine.
 
-<h3>Setup on cruncher</h3>
+<br>
+<ul>
+<li><a href="../D1/setup_laptops.html#ssh_keys_viz2">Set SSH keys for viz2</a></li>
+<li><a href="../D1/setup_laptops.html#ConnectViz2">Get norstoreVizWIN.sh script on your local machine</a></li>
+</ul>
+Here we assume the two previous steps have been performed and you have launched <b>norstoreVizWIN.sh</b>.
+<br>
+After starting norstoreVizWIN.sh, a new TurboVNC window should appear:
+<br>
+<img src="../../images/turboVNC.png" align="middle" width="600" alt="" />
+<br>
+with a terminal you can use to visualize your data. We will refer it as TurboVNC Terminal and all commands to visualize your data will be performed in this terminal.
+<br>
+<font color="red">In your TurboVNC terminal</font>:
+<code>
+<pre>
+panoply.sh
+</pre>
+</code>
+<br>
+When typing the command above, a window should pop-up with a File browser.
+<br>
+<br>
+<img src="../../images/panoply_p0.png" align="middle" alt="" />
+<br>
+<br>
+In the field "File Name", write "/projects/NS1000K/GEF4530/outputs" and then enter. This should move to /projects/NS1000K/GEF4530/outputs directory.
+<br>
+And browse in you $USER directory then to archive/f2000.T31T31.test/atm/hist and select and double-click (left button) either f2000.T31T31.test.cam.h0.0001-01-01-00000.nc or f2000.T31T31.test.cam.h0.0001-01-31-00000.nc. Here we show plots using f2000.T31T31.test.cam.h0.0001-01-01-00000.nc.
+<br>
+<br>
+<img src="../../images/panoply_p1.png" align="middle" alt="" />
 
+<br>
+<br>
+<b>Geographical map</b>
+<br>
+Select (double click) for instance "T" to visualize the temperature (4D variables):
+<br>
+<img src="../../images/panoply_p2.png" align="middle" alt="" />
+<br>
+<br>
+And click on "create". The temperature field will then appear:
+
+<img src="../../images/panoply_p3.png" align="middle" alt="" />
+<br>
+<br>
+Take a few minutes to check and understand your plot:
+<ul>
+<li>Which Time did you plot?</li>
+<li>Which level did you plot?</li>
+</ul>
+<br>
+By default, panoply will plot the first level. And the first level for CAM 5.3 corresponds to 3.64347 sigma pressure level... 
+<br>
+If you change from 1 to 30 (last CMA 5.3 model level i.e. level close to the surface), the color scale won't be changed (and is set with min/max temperature at the top of the atmosphere):
+<br>
+<br>
+<img src="../../images/panoply_p4.png" align="middle" alt="" />
+<br>
+<br>
+In Panoply, select tab "Scale" (at the bottom), and click on "Always fit to data":
+<br>
+<br>
+<img src="../../images/panoply_p5.png" align="middle" alt="" />
+<br>
+<br>
+<b>Georeferenced Latitude-Vertical plot</b>
+<br>
+As for lat/lon 2D map, click on "Create Plot" and in "create georeferenced" select "Latitude-Vertical" instead of "Longitude-Latitude".
+<br>
+<br>
+<img src="../../images/panoply_p6.png" align="middle" alt="" />
+<br>
+<br>
+Like for geographical map, take a few minutes to analyze your plot.
+<br>
+The vertical axis is labelled as "hybrid level at midpoints". Again, not pressure levels but still we usually use the log to plot it as it is more intuitive to analyze. For this, go to the tab "Grid" and change the units of the vertical axis from "scalar" to "Log10".
+<br>
+<br>
+
+<img src="../../images/panoply_p7.png" align="middle" alt="" />
+<br>
+<br>
+You can use panoply to plot other variables and make different kind of plots. We will now look at the control experiment (stored on norStore).
+
+<h4 id="Workflow">Post-processing workflow: example with the control experiment</h4>
+We usually post-process our model outputs before visualization:
+<ol>
+<li><a href="#Select">Select variables of interest</a></li>
+<li><a href="#h2P">Convert to Pressure levels</a></li>
+<li><a href="#mean">Compute monthly/yearly mean</a></li>
+<li><a href="#visu">Generate plots/Visualize</a></li>
+</ol>
+Step-2 may not mandatory but often necessary if you wish to compare with observations or other models.
+<br>
+Step-3 depends on what results you wish to analyze. With climate models, it is unlikely you analyze daily data as simulations span over several years/decades.
+<br>
+<br>
+<b>Cruncher</b> (cruncher.norstore.uio.no) is a machine you can use to post-process your model outputs once you have <a href="norstore.html">stored them on norStore</a>.
+
+<br>
+
+<h5>Setup on cruncher</h5>
+
+Login on <b>cruncher</b> (see <a href="https://pages.github.uio.no/annefou/GEF4530/practicals/D1/setup_laptops.html">here</a> if you need help).
+<br>
+Then set-up your environment to access all the tools we will be using on cruncher:
+<br>
 <code>
 <pre>
 export PATH=/projects/NS1000K/panoply/4.4.3/:$PATH
@@ -41,21 +158,28 @@ module load ncl
 
 For more information see <a href="https://pages.github.uio.no/annefou/GEF4530/results/setup.html">here</a>.
 
-<h3>Post-processing workflow </h3>
+<h5 id="Select">Select variables of interest</h5>
+<h5 id="h2P">Convert to Pressure levels</h5>
+<h5 id="mean">Compute monthly/yearly mean</h5>
+<h5 id="visu">Generate plots/Visualize</h5>
 
-<h4>Quickly check your model outputs</h4>
 
-<h4>Quickly visualize your model outputs<h4>
-
-<h4>Select variables of interest</h4>
-
-<h4>Visualize with panoply</h4>
-
-<h4>SPARC climatology</h4>
-
-<h4>Model levels to pressure levels</h4>
-
-<h4>Daily/Monthly/Yearly means with cdo</h4>
-
+<h4 id="SPARC">SPARC climatology</h4>
+<br>
+<h4 id="Ex1">Exercice-1</h4>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
 </html>

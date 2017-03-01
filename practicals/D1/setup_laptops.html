@@ -184,9 +184,9 @@ These packages are already installed on cruncher and more information on how to 
 <li><b>SSH keys</b>: make sure your public key (on your laptop) is known from viz2.norstore.uio.no.
 </ol>
 <br>
-<h3>SSH keys for viz2 (visualization)</h3>
+<h4 id="ssh_keys_viz2">SSH keys for viz2 (visualization)</h4>
 <br>
-To automate transfer between abel and norstore, you have set-up your SSH keys (see <a href="file:///usr/local/galaxy/GEF4530_web/practicals/D1/setup_laptops.html#SSH_keys">here</a>).
+To automate transfer between abel and norstore, you have set-up your SSH keys (see <a href="#SSH_keys">here</a>).
 <br>
 To be able to visualize your data using the norStore remote visualization facility (viz2), your SSH public key (from your laptop/local desktop) needs to be available on viz2:
 <ol>
@@ -229,8 +229,38 @@ Make sure you fill your email address correctly. For more information see <a hre
 </ol>
 <br>
 <br>
+<h4 id="ConnectViz2">Connect to viz2</h4>
 <br>
+To make use of the remote visualization machine (viz2), you need to use TurboVNC (and you do not connect using ssh).
 <br>
+Clone GEF4530 repository (if you haven't done it yet). On your laptop terminal or machine desktop (use a git bash terminal on Windows):
+<code>
+<pre>
+git clone https://github.uio.no/annefou/GEF4530.git
+</pre>
+</code>
+The previous command (git clone) needs to be done once only. Then every time you wish to open a new terminal on viz2:
+<code>
+<pre>
+cd GEF4530/setup
+git pull
+./norstoreVizWin.sh viz2 0
+</pre>
+</code>
+or
+
+<code>
+<pre>
+cd GEF4530/setup
+git pull
+./norstoreVizWin.sh viz2 1
+</pre>
+</code>
+The last parameter (0 or 1) indicates which GPU to use on the viz2 machine.
+<br>
+Please note that on Linux system, it expects vncviewer (part of turboVNC) to be in /opt/TurboVNC/bin/. Edit the script if it is in a different location on your system (seek for help if you have problems).
+<br>
+The first time you launch <b>norstoreVizWin.sh</b>, you will be asked to define a password for TurboVNC. Choose a password you can remember as you will have to enter it for every remote visualization session.
 <br>
 <br>
 <br>

@@ -25,15 +25,16 @@ Released   : 20121026
 <br>
 <br>
 <ul>
-<li><a href="#Setup">Check Setup on Cruncher, viz2</a></li>
+<li><a href="#Setup">Check Setup on Cruncher</a></li>
+<li><a href="#SetupVisu">Check Setup on viz2</a></li>
 <li><a href="#Availability">Check availability of post-processing and Visualization tools</a></li>
 </ul>
 <hr>
 <br>
 <br>
-<h2 id="Setup">Check setup</h2>
+<h2 id="Setup">Check setup on Cruncher</h2>
 
-To post-process your model results on norStore facility (Cruncher) or visualize your data on norStore remote visualization platform (viz2), you need to be able to run Remote X11 applications.
+To post-process your model results on norStore facility (Cruncher), you need to be able to run Remote X11 applications.
 <br>
 If you haven't checked your remote access yet, please follow this <a href="../practicals/D1/setup_laptops.html">link</a>.
 <br>
@@ -45,13 +46,19 @@ ssh -Y $LOGNAME@cruncher.norstore.uio.no
 </code>
 where $LOGNAME is your UIO username (replace it by your own username!)
 <br>
-The same applies for <b>viz2.norstore.uio.no</b>. For using viz2, make sure you also have your SSH keys in place! See <a href="https://pages.github.uio.no/annefou/GEF4530/practicals/D1/setup_laptops.html#Visualization">here</a> for more information.
-<br>
-Documentation on norStore facility can be found <a href="https://www.sigma2.no/node/8">here</a>.
-<br>
-<br>
 Please note that these machines are not accessible outside the UIO networks. If you wish to login on abel or cruncher outside the UIO network, use 
 <a href="http://www.mn.uio.no/geo/english/services/it/help/using-linux/x2go.html">X2Go Client</a>. 
+<br>
+<h2 id="SetupVisu">Check setup on vis2</h2>
+The same applies for <b>viz2.norstore.uio.no</b>. 
+
+In addition, for using viz2, make sure you also have your SSH keys in place! See <a href="https://pages.github.uio.no/annefou/GEF4530/practicals/D1/setup_laptops.html#Visualization">here</a> for more information.
+<br>
+<br>
+<br>
+Documentation on norStore facilities (both cruncher and viz2) can be found <a href="https://www.sigma2.no/node/8">here</a>.
+<br>
+<br>
 <br>
 <br>
 <h2 id="Availability">Check post-processing and Visualization tools</h2>
@@ -65,7 +72,7 @@ On norStore (cruncher.norstore.uio.no), we will be using the following tools for
 <li><a href="https://www.continuum.io/downloads">Python Anaconda</a></li>
 </ul>
 <br>
-These packages are already installed on cruncher but every time you login on cruncher, you would need to setup your environment:
+These packages are already installed on cruncher/viz2 but every time you login on cruncher, you would need to setup your environment:
 <code>
 <pre>
 export PATH=/projects/NS1000K/panoply/4.4.3/:$PATH
