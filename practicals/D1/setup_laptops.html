@@ -31,16 +31,17 @@ Released   : 20121026
     <li><a href="#Mac">From a Mac laptop</a></li>
     <li><a href="#Windows">From a Windows laptop</a></li>
   </ul>
-<li><a href="#Login">Check access to Notur Computing facility (Abel) and NorStore (cruncher)</a></li>
+<li><a href="#Login">Check access to Notur Computing facility (Abel) and NorStore (cruncher, viz2)</a></li>
 <li><a href="#SSH_keys">Check for SSH keys</a></li>
 <li><a href="#Analysis">Check Post-processing and Visualization Software</a></li>
+<li><a href="#Visualization">Setup for Remote Visualization (viz2)</a></li>
 </ul>
 <hr>
 <br>
 <br>
 <h2 id="Remote">Check Remote Connection</h2>
 
-To be able to connect to the High-performance Computing Machine where CAM-5.3 (Abel) will be run and on the norStore facility (cruncher) to post-process your model results, you need to be able to run Remote X11 applications.
+To be able to connect to the High-performance Computing Machine where CAM-5.3 (Abel) will be run and on the norStore facility (cruncher, viz2) to post-process your model results, you need to be able to run Remote X11 applications.
 <br>
 <br>
 <h3 id="Linux" >From a Linux laptop</h3>
@@ -103,7 +104,7 @@ There are many "Session types" to choose from. We recommend a KDE session. Use y
 Then open a terminal and check you can <a href="#Login">login both on Abel (HPC computing facility) and Cruncher (norstore storage facility)</a>.
 <br>
 <br>
-<h2 id="Login">Login to Notur (Abel) and NorStore (cruncher)</h2>
+<h2 id="Login">Login to Notur (Abel) and NorStore (cruncher, viz2)</h2>
 <br>
 In this section, you should check you can access both <a href="https://docs.hpc.uib.no/wiki/Main_Page">Abel</a> (where you will run <a href="">CAM-5</a>) and <a href="https://www.sigma2.no/content/norstore-services">Cruncher</a> (where you will pos t-process and visualize the results of your model runs).
 <code>
@@ -158,7 +159,7 @@ Information on how to generate SSH keys and automate transfers can be found <a h
 <br>
 <h2 id="Analysis">Check Post-processing and Visualization Software</h2>
 <br>
-On norStore (cruncher.norstore.uio.no), we will be using the following tools for post-processing and visualize the results of CAM-5 simulations:
+On norStore (cruncher.norstore.uio.no, viz2.norstore.uio.no), we will be using the following tools for post-processing and visualize the results of CAM-5 simulations:
 <ul>
 <li><a href="https://code.zmaw.de/projects/cdo">CDO (Climate Data operators)</a></li> 
 <li><a href="https://www.ncl.ucar.edu/index.shtml">NCL (Ncar Command Language)</a></li>
@@ -173,6 +174,59 @@ These packages are already installed on cruncher and more information on how to 
 <br>
 <br>
 <br>
+<h2 id="Visualization">Setup for Remote Visualization (viz2)</h2>
+<br>
+<b>Requirements</b>
+<ol>
+<li>Get access to viz2.norstore.uio.no (all GEF4530 students should have access to this machine)</li>
+<li><b>ssh</b>. It is available on all machines at UIO. If you wish to use your laptop, make sure it installed (on Windows, install <a href="https://git-scm.com/downloads">git bash</a>)</li>
+<li><b>TurboVNC 2.0.1</b>. It is available on all student machines in Room 209 and on all METOS student machines but if you wish to visualize your data from your laptop, install on your machine turbovnc 2.0.1 (<a href="http://sourceforge.net/projects/turbovnc/files/2.0.1/">http://sourceforge.net/projects/turbovnc/files/2.0.1/</a>). Contact us if you need any help.</li>
+<li><b>SSH keys</b>: make sure your public key (on your laptop) is known from viz2.norstore.uio.no.
+</ol>
+<br>
+<h3>SSH keys for viz2 (visualization)</h3>
+<br>
+To automate transfer between abel and norstore, you have set-up your SSH keys (see <a href="file:///usr/local/galaxy/GEF4530_web/practicals/D1/setup_laptops.html#SSH_keys">here</a>).
+<br>
+To be able to visualize your data using the norStore remote visualization facility (viz2), your SSH public key (from your laptop/local desktop) needs to be available on viz2:
+<ol>
+<li><b>Check your public key on your local desktop/laptop</b>:
+<br>
+<code>
+<pre>
+ls $HOME/.ssh
+</pre>
+</code>
+This command should return something like:
+<code>
+<pre>
+authorized_keys  id_rsa  id_rsa.pub  known_hosts
+</pre>
+</code>
+If you have files called "id_rsa" and "id_rsa.pub" then skip step 2. Otherwise create new SSH keys:
+<li><b>Create SSH keys</b>:</li>
+<code>
+<pre>
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+</pre>
+</code>
+Make sure you fill your email address correctly. For more information see <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">here</a>.
+<li><b>Add your new SSH key to viz2.norstore.uio.no</b>:</li>
+<ul>
+<li>Copy the public key to viz2.norstore.uio.no:</li>
+<code>
+<pre>
+  scp .ssh/id_rsa.pub viz2.norstore.uio.no:tmp.key
+</pre>
+</code>
+<li>On the viz2.norstore.uio.no add the key to the file .ssh/authorized_keys:</li>
+<code>
+<pre>
+  ssh viz2.norstore.uio.no "cat tmp.key >> .ssh/authorized_keys ; rm tmp.key"
+</pre>
+</code>
+<ul>
+</ol>
 <br>
 <br>
 <br>

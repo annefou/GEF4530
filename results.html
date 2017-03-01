@@ -42,15 +42,57 @@ Released   : 20121026
 	</div>
 	<!-- end #header -->
 	<ul>
-		<li><a href="results/setup.html">Setup on norStore (cruncher)</a></li>
+		<li><a href="results/setup.html">Setup on norStore (cruncher, viz2)</a></li>
 		<li><a href="results/analyze.html">Post-processing and visualization tools</a></li>
                 <ul>
-			<li><a href="results/analyze.html#cdo">CDO (Climate Data Operators)</a></li>
-   			<li><a href="results/analyze.html#nco">NCO (netCDF Operators)</a></li>
-   			<li><a href="results/analyze.html#ncl">NCL (Ncar Command Language)</a></li>
-                        <li><a href="results/analyze.html#ncview">Ncview: a netCDF visual browser</a></li>
-   			<li><a href="results/analyze.html#panoply">Panoply netCDF, HDF and GRIB Data Viewer</a></li>
-   			<li><a href="results/analyze.html#python">Python programming language</a></li>
+			<li><font color="red">CDO (Climate Data Operators)</font></li>
+CDO is a collection of command-line operators to manipulate and analyze climate and numerical weather prediction data and can manipulate CAM model outputs (netCDF).
+<br>
+CDO provides more than 350 operators!
+<ul>
+<li><a href="https://code.zmaw.de/projects/cdo">CDO (Climate Data operators) Documentation</a></li>
+<li><a href="https://code.zmaw.de/projects/cdo/embedded/cdo_refcard.pdf">CDO Reference Card</a></li>
+</ul>
+<br>
+   			<li><font color=red>NCO (netCDF Operators)</font></li>
+NCO is a suite of programs designed to perform certain "operations" on netCDF files, i.e., things like averaging, concatenating, subsetting, or metadata manipulation. 
+<ul>
+<li><a href="http://nco.sourceforge.net">NCO (netCDF Operator website)</a></li>
+</ul>
+<br>
+   			<li><font color=red>NCL (Ncar Command Language)</font></li>
+NCL is an interpreted language (no need to compile your program) designed specifically for scientific data analysis and visualization.
+<br>
+The main diagnostic tools developed at NCAR for CESM are based on NCL. More information can be found <a href="http://www.cesm.ucar.edu/working_groups/Atmosphere/amwg-diagnostics-package/">here</a> with links to example figures.
+<ul>
+<li><a href="https://www.ncl.ucar.edu/index.shtml">NCL (Ncar Command Language)</a></li>
+<li><a href="https://www.ncl.ucar.edu/Document/Reference_Cards/NCL_scripting_language_reference_card_A4.pdf">NCL Reference Card</a></li>
+</ul>
+<br>
+                        <li><font color=red>Ncview: a netCDF visual browser</font></li>
+Ncview is one of the simplest visual browser for netCDF format files.
+<br>
+If you want to learn more about ncview:
+<ul>
+<li>See a <a href="http://cirrus.ucsd.edu/~pierce/software/ncview/ncview_screenshot.gif">screenshot</a> of ncview in action.</li>
+
+<li><a href="http://cirrus.ucsd.edu/~pierce/software/ncview/quick_intro.html">Quick introduction</a>: Everything you need to know to get working in 5 minutes.</li>
+</ul>
+<br>
+   			<li><font color=red>Panoply netCDF, HDF and GRIB Data Viewer</font></li>
+Panoply is a GUI (Graphical User Interface) application used to quickly visualize data in netCDF, HDF or GRIB formats. It can also perform simple calculations, apply masks, and to quickly create spatial or line plots.
+<br>
+<ul>
+<li><a href="http://www.giss.nasa.gov/tools/panoply/">Panoply netCDF, HDF and GRIB Data Viewer</a></li>
+</ul>
+<br>
+   			<li><font color=red>Python programming language</font></li>
+Python is a general purpose programming and scripting language which includes powerful visualisation and data analysis tools. Matplotlib is a general purpose plotting library gioving Python the power of MatLab. NetCDF files can be read using the NetCDF4 library and/or Xarray. <a href="https://www.continuum.io/downloads">The best distribution of Python for scientific use is the Anaconda distribution</a>
+<br>
+Examples (python, Fortran, C++, etc.) to read and write netCDF files can be found <a href="http://www.unidata.ucar.edu/software/netcdf/examples/programs/">here</a>. 
+<br>
+Several examples of plotting routines for NetCDF data can be downloaded from <a href="https://github.com/hansbrenna/NetCDF_postprocessor">https://github.com/hansbrenna/NetCDF_postprocessor</a>. And if you search on the web, you will find many examples and advanced plotting programs you can use for plotting your results. 
+<br>
                 </ul>
               	<li><a href="results/analyze.html#usingcdo">Using CDO and NCO for data processing</a></li>
               	<li><a href="results/analyze.html#pyplot">Plotting using python</a></li>
