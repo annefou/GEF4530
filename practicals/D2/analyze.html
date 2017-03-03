@@ -93,7 +93,7 @@ Take a few minutes to check and understand your plot:
 <br>
 By default, panoply will plot the first level. And the first level for CAM 5.3 corresponds to 3.64347 sigma pressure level... 
 <br>
-If you change from 1 to 30 (last CMA 5.3 model level i.e. level close to the surface), the color scale won't be changed (and is set with min/max temperature at the top of the atmosphere):
+If you change from 1 to 30 (last CAM 5.3 model level i.e. level close to the surface), the color scale won't be changed (and is set with min/max temperature at the top of the atmosphere):
 <br>
 <br>
 <img src="../../images/panoply_p4.png" align="middle" alt="" />
@@ -103,6 +103,8 @@ In Panoply, select tab "Scale" (at the bottom), and click on "Always fit to data
 <br>
 <br>
 <img src="../../images/panoply_p5.png" align="middle" alt="" />
+<br>
+You can save your plot as an image (png format).
 <br>
 <br>
 <b>Georeferenced Latitude-Vertical plot</b>
@@ -125,12 +127,28 @@ The vertical axis is labelled as "hybrid level at midpoints". Again, not pressur
 You can use panoply to plot other variables and make different kind of plots. We will now look at the control experiment (stored on norStore).
 
 <h4 id="Workflow">Post-processing workflow: example with the control experiment</h4>
+
+The control experiment (which you have used to restart your 1 month experiment) results have been stored on norstore. 
+<br>
+<font color="red">On cruncher (cruncher.norstore.uio.no):</font>
+<br>
+<code>
+<pre>
+cd /projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist
+</pre>
+</code>
+<ul>
+<li>How many years did we run?</li>
+<li>What is the output frequency?</li>
+</ul>
+<br>
+Feel free to use viz2 and visualize the model outputs from this control experiment. As you can see, analyzing output simulations that span over several years can be cumbersome.
+<br>
 We usually post-process our model outputs before visualization:
 <ol>
 <li><a href="#Select">Select variables of interest</a></li>
-<li><a href="#h2P">Convert to Pressure levels</a></li>
 <li><a href="#mean">Compute monthly/yearly mean</a></li>
-<li><a href="#visu">Generate plots/Visualize</a></li>
+<li><a href="#h2P">Convert to Pressure levels and visualize</a></li>
 </ol>
 Step-2 may not mandatory but often necessary if you wish to compare with observations or other models.
 <br>
@@ -159,11 +177,75 @@ module load ncl
 For more information see <a href="https://pages.github.uio.no/annefou/GEF4530/results/setup.html">here</a>.
 
 <h5 id="Select">Select variables of interest</h5>
-<h5 id="h2P">Convert to Pressure levels</h5>
+Each model output file contains a large number of variables while you may be interested in a few of them only. To select variables, you may use <a href="http://nco.sourceforge.net/nco.html#ncks-netCDF-Kitchen-Sink">ncks</a>, a tool part of the <a href="http://nco.sourceforge.net/">nco</a> tool suite.
+<br>
+For instance, <font color="red">on cruncher</font>:
+<code>
+<pre>
+mkdir -p $HOME/GEF4530/control
+ncks -v T f2000.T31T31.control.cam.h0.0008-12-22-00000.nc $HOME/GEF4530/control/f2000.T31T31.control.cam.h0.0008-12-22-00000_T.nc
+</pre>
+</code>
+<br>
+It extracts T (Temperature) from the netCDF file f2000.T31T31.control.cam.h0.0008-12-22-00000.nc and store the result in a new netCDF file $HOME/GEF4530/control/f2000.T31T31.control.cam.h0.0008-12-22-00000_T.nc
+<br>
+Remember that your new netCDF file is stored in your HOME area ($HOME/GEF4530/control).
+<br>
+<ul>
+<li>Use panoply to visualize your new netCDF file</li>
+<li>Use a <a href="https://pages.github.uio.no/annefou/GEF4530/results/shell.html">shell loop</a> to extract T and U from all the model outputs (control experiment)</li>
+</ul>
+<br>
 <h5 id="mean">Compute monthly/yearly mean</h5>
-<h5 id="visu">Generate plots/Visualize</h5>
+You can use <a href="https://code.zmaw.de/projects/cdo">CDO</a> or <a href="http://nco.sourceforge.net">NCO</a> (or python) to compute monthly average.
+<br>
+For instance, to compute the monthly average for January from the fifth year of our control experiment:
+<br>
+<code>
+<pre>
+cd /projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist/
+ncra -d time,1461,1492 f2000.T31T31.control.cam.h0.0005-01-*.nc $HOME/GEF4530/control/f2000.T31T31.control-0005-01-monmean.nc
+</pre>
+</code>
+<br>
+The calendar in the CESM time manager is the 365 day or no-leap calendar. 
+This calendar has the standard 12 months, but it has 365 days every year and 28 days in every February. 
+<br>
+Our CAM 5.3 control experiment started from 0001-01-01 00:00:0.0. This can be checked for instance using ncdump:
+<br>
+<code>
+<pre>
+ncdump -h f2000.T31T31.control.cam.h0.0001-01-01-00000.nc
+</pre>
+</code>
+<br>
+You will get:
+<code>
+<pre>
+	double time(time) ;
+		time:long_name = "time" ;
+		time:units = "days since 0001-01-01 00:00:00" ;
+		time:calendar = "noleap" ;
+		time:bounds = "time_bnds" ;
+</pre>
+</code>
+<br>
+<ul>
+<li>You can use <a href="https://pages.github.uio.no/annefou/GEF4530/results/shell.html">shell loops</a> to compute the average for every month and then get 12 output files (one per month)</li>
+</ul>
+<br>
+<b>Remark:</b>
+<br>
+We have run 8 years in our control run. However, we usually do not use the first years (model spin up) and here you may keep the last 5 years only. If you have time you may compare results when averaging over 8 years or 5 years.
+<br>
+See more <a href="https://pages.github.uio.no/annefou/GEF4530/results/analyze.html#usingcdo">here</a>.
+<br>
+<h5 id="h2P">Convert to Pressure levels</h5>
 
+To convert CAM 5.3 model outputs to pressure levels, the easiest is to use ncl vertical interpolation routines <a href="http://www.ncl.ucar.edu/Document/Functions/Built-in/vinth2p.shtml">vinth2p</a>.
 
+<br>
+All the interpolation routines from NCL are available <a href="http://www.ncl.ucar.edu/Applications/vert_interp.shtml">here</a>.
 <h4 id="SPARC">SPARC climatology</h4>
 <br>
 <h4 id="Ex1">Exercice-1</h4>
