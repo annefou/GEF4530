@@ -243,13 +243,108 @@ See more <a href="https://pages.github.uio.no/annefou/GEF4530/results/analyze.ht
 <h5 id="h2P">Convert to Pressure levels</h5>
 
 To convert CAM 5.3 model outputs to pressure levels, the easiest is to use ncl vertical interpolation routines <a href="http://www.ncl.ucar.edu/Document/Functions/Built-in/vinth2p.shtml">vinth2p</a>.
-
+<br>
+To use <b>vert_1.ncl</b> to convert <b>f2000.T31T31.control-0005-01-monmean.nc</b> (January mean from the fifth year of our control experiment) to pressure level:
+<ol>
+<li>Download <a href="http://www.ncl.ucar.edu/Applications/Scripts/vert_1.ncl">vert_1.ncl</a> and transfer it to cruncher. Here we assume you have your vert_1.ncl script in <b>$HOME/GEF4530/control/</b>.</li>
+<li>Edit vert_1.ncl (use your favourite editor such as emacs) and change the input file name:/li>
+<code>
+<pre>
+fn  = "f2000.T31T31.control-0005-01-monmean.nc" ; define filename
+</pre>
+</code>
+<br>
+<li>Then run your script with ncl <font color="red">on cruncher</font>:</li>
+<br>
+<code>
+<pre>
+ncl vert_1.ncl
+</pre>
+</code>
+</ol>
+<br>
+vert_1.ncl interpolates the temperature to the following pressure levels:
+<code>
+<pre>
+  pnew = (/ 850.0,700.0,500.0,300.0,200.0 /)        
+</pre>
+</code>
+<br>
+And it creates contour plots of temperature at 850 mb, 500 mb and 200mb. You can of course change the code (for instance change the list of pressure levels in <b>pnew</b> and generate different plots. If you want to interpolate a different variable to pressure level, you need to change the variable read from the netCDF file:
+<code>
+<pre>
+T = in->T  
+</pre>
+</code> 
+<br>
+The variable names can be found using for instance ncview (or ncdump -h where the option "-h" means to dump the header/metadata of the netCDF file only).
+<br>
+If you wish to store the resulting field to a new netCDF file, see <a href="https://www.ncl.ucar.edu/Applications/o-netcdf.shtml">here</a>. Let us know if you need more help.
 <br>
 All the interpolation routines from NCL are available <a href="http://www.ncl.ucar.edu/Applications/vert_interp.shtml">here</a>.
-<h4 id="SPARC">SPARC climatology</h4>
+<br>
+<h4 id="SPARC"><a href="http://www.sparc-climate.org/data-center/data-access/reference-climatologies/randels-climatologies/temperature-wind-climatology/">SPARC climatology</a></h4>
+<br>
+<br>
+The SPARC climatology T and U is stored in a file called <b>sparc.nc</b> and can be found on norStore:
+<br>
+<code>
+<pre>
+cd /projects/NS1000K/GEF4530/SPARC
+</pre>
+</code>
+<br>
+A ncl script is available in the same directory (<a href="https://www.ncl.ucar.edu/Applications/Scripts/sparc_2.ncl">sparc_2.ncl</a>) and can be used to generate two plots (png file):
+<ul>
+<li>Create sparc directory in your HOME on norStore:</li>
+<code>
+<pre>
+mkdir -p $HOME/GEF4530/sparc
+cd $HOME/GEF4530/sparc
+</pre>
+</code>
+<li>copy sparc_2.ncl in your local directory:</li>
+<code>
+<pre>
+cp /projects/NS1000K/GEF4530/SPARC/sparc_2.ncl $HOME/GEF4530/sparc/.
+</pre>
+</code>
+<li>Edit <b>$HOME/GEF4530/sparc/sparc_2.ncl</b> and change <b>diri</b> (it specifies the directory where sparc.nc can be found). It is by default set to <b>"./"</b> and should be set to:</li>
+
+<code>
+<pre>
+diri="/projects/NS1000K/GEF4530/SPARC/"
+</pre>
+</code>
+<li>Save your script and run ncl:</li>
+<code>
+<pre>
+ncl sparc_2.ncl
+</pre>
+</code>
+<br>
+You can visualize png images using <b>display</b>:
+<code>
+<pre>
+display sparc.000001.png
+</pre>
+</code>
+<br>
+<b>sparc.000001.png</b> shows the monthly temperature climatologies (K) for each month from January to December.
+<br>
+<b>sparc.000002.png</b> shows the monthly wind climatologies (m/s) for each
+ month from January to December.
 <br>
 <h4 id="Ex1">Exercice-1</h4>
 <br>
+<ol>
+<li>How well does CAM5 (T31/L30, 5 yr control run) represent observations?</li>
+</ol>
+<br>
+
+Plot T and U and compare with the SPARC data climatology (online on norstore).
+<br>
+<font color="red">Fulfill the first exercise until the next practical on March 27, 2017!</font>
 <br>
 <br>
 <br>
