@@ -147,7 +147,7 @@ Feel free to use viz2 and visualize the model outputs from this control experime
 We usually post-process our model outputs before visualization:
 <ol>
 <li><a href="#Select">Select variables of interest</a></li>
-<li><a href="#mean">Compute monthly/yearly mean</a></li>
+<li><a href="#mean">Compute monthly/yearly/zonal mean</a></li>
 <li><a href="#h2P">Convert to Pressure levels and visualize</a></li>
 </ol>
 Step-2 may not mandatory but often necessary if you wish to compare with observations or other models.
@@ -239,6 +239,10 @@ You will get:
 We have run 8 years in our control run. However, we usually do not use the first years (model spin up) and here you may keep the last 5 years only. If you have time you may compare results when averaging over 8 years or 5 years.
 <br>
 See more <a href="https://pages.github.uio.no/annefou/GEF4530/results/analyze.html#usingcdo">here</a>.
+<br>
+If you wish to compute zonal mean, you may use NCL. <a href="http://www.ncl.ucar.edu/Applications/zonal.shtml">Here</a> you will find several examples to compute and plot zonal means.
+
+<br>
 <br>
 <h5 id="h2P">Convert to Pressure levels</h5>
 
