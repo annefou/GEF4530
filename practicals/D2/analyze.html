@@ -372,6 +372,16 @@ display sparc.000001.png
 
 Plot T and U and compare with the SPARC data climatology (online on norstore).
 <br>
+We give here some suggestions on how to proceed (feel free to use your own method!):
+<br>
+<ol>
+<li>Select T,U,hyam,hybm,PS (use ncks) for all the model outputs of the control experiment (/projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist). Save these new outputs files in $HOME/GEF4530/control</li>.
+<li>For each year (from year 4 to year 8), compute the monthly average using ncra.</li>
+<li>Use ncra again to get an average for all the January months. Repeat it for each month (February to December).</li>
+<li>Use <a href="http://www.ncl.ucar.edu/Applications/Scripts/zonal_2.ncl">zonal_2.ncl</a> and <a href="http://www.ncl.ucar.edu/Applications/Scripts/vert_1.ncl">vert_1.ncl</a> to get a zonal mean and interpolate to pressure levels.</li>
+</ol>
+
+<br>
 <font color="red">Fulfill the first exercise until the next practical on March 27, 2017!</font>
 <br>
 <br>
