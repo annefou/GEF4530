@@ -168,7 +168,6 @@ Then set-up your environment to access all the tools we will be using on crunche
 <code>
 <pre>
 export PATH=/projects/NS1000K/panoply/4.4.3/:$PATH
-export PATH=/projects/NS1000K/python/anaconda/bin:$PATH
 module load cdo
 module load ncl
 </pre>
@@ -189,6 +188,17 @@ ncks -v T f2000.T31T31.control.cam.h0.0008-12-22-00000.nc $HOME/GEF4530/control/
 <br>
 It extracts T (Temperature) from the netCDF file f2000.T31T31.control.cam.h0.0008-12-22-00000.nc and store the result in a new netCDF file $HOME/GEF4530/control/f2000.T31T31.control.cam.h0.0008-12-22-00000_T.nc
 <br>
+If you want to select more variables (not T only), you can give the list of variables you wish to select (comma separated). 
+<br>
+For instance:
+<br>
+<code>
+<pre>
+ncks -v T,U,hyam,hybm,PS f2000.T31T31.control.cam.h0.0008-12-22-00000.nc $HOME/GEF4530/control/f2000.T31T31.control.cam.h0.0008-12-22-00000_T.nc
+</pre>
+</code>
+To select T, U, hyam, hybm and PS. These variables (hyam, hybm and PS) will be used to interpolate <a href="#h2P">T and U on pressure levels</a>.
+<br>
 Remember that your new netCDF file is stored in your HOME area ($HOME/GEF4530/control).
 <br>
 <ul>
@@ -204,7 +214,7 @@ For instance, to compute the monthly average for January from the fifth year of 
 <code>
 <pre>
 cd /projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist/
-ncra -d time,1461,1492 f2000.T31T31.control.cam.h0.0005-01-*.nc $HOME/GEF4530/control/f2000.T31T31.control-0005-01-monmean.nc
+ncra -d time,1461,1492 f2000.T31T31.control.cam.h0.0004-01-*.nc f2000.T31T31.control.cam.h0.0005-01-*.nc $HOME/GEF4530/control/f2000.T31T31.control-0005-01-monmean.nc
 </pre>
 </code>
 <br>
@@ -229,6 +239,15 @@ You will get:
 		time:bounds = "time_bnds" ;
 </pre>
 </code>
+<br>
+We used two input files f2000.T31T31.control.cam.h0.0004-01-16-00000.nc and f2000.T31T31.control.cam.h0.0005-01-11-00000.nc because we wish to compute monthly average for January Year 5, starting from day 1461 to day 1492.
+<br>
+You can use ncview to check the start and end time for each file.
+<br>
+With this last command, we computed the average for all the variables, while we know it won't be necessary (for our climatology, we only need T and U). 
+<ul>
+<li>Apply ncra to compute the average (January, year 5) on the netCDF file you first created (after ncks).</li>
+</ul>
 <br>
 <ul>
 <li>You can use <a href="https://pages.github.uio.no/annefou/GEF4530/results/shell.html">shell loops</a> to compute the average for every month and then get 12 output files (one per month)</li>
