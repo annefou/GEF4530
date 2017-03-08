@@ -41,6 +41,7 @@ Make sure you have all the requirements for using viz2. See <a href="../D1/setup
 <br>
 <ul>
 <li><a href="../D1/setup_laptops.html#ssh_keys_viz2">Set SSH keys for viz2</a></li>
+<li><a href="../D1/setup_laptops.html#Visualization">Install TurboVNC 2.0.1</a>. This step is not required if you use a student machine in Room 209 or at METOS. If you wish to visualize your data from your laptop, install on your machine turbovnc 2.0.1 (http://sourceforge.net/projects/turbovnc/files/2.0.1/). Contact us if you need any help.</li>
 <li><a href="../D1/setup_laptops.html#ConnectViz2">Get norstoreVizWIN.sh script on your local machine</a></li>
 </ul>
 Here we assume the two previous steps have been performed and you have launched <b>norstoreVizWIN.sh</b>.
@@ -375,7 +376,7 @@ Plot T and U and compare with the SPARC data climatology (online on norstore).
 We give here some suggestions on how to proceed (feel free to use your own method!):
 <br>
 <ol>
-<li>Select T,U,hyam,hybm,PS (use ncks) for all the model outputs of the control experiment (/projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist). Save these new outputs files in $HOME/GEF4530/control</li>.
+<li>Select T,U,hyam,hybm,PS (use ncks) for all the model outputs of the control experiment (/projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist). Save these new outputs files in the directory $HOME/GEF4530/control/</li>.
 <li>For each year (from year 4 to year 8), compute the monthly average using ncra.</li>
 <li>Use ncra again to get an average for all the January months. Repeat it for each month (February to December).</li>
 <li>Use <a href="http://www.ncl.ucar.edu/Applications/Scripts/zonal_2.ncl">zonal_2.ncl</a> and <a href="http://www.ncl.ucar.edu/Applications/Scripts/vert_1.ncl">vert_1.ncl</a> to get a zonal mean and interpolate to pressure levels.</li>
