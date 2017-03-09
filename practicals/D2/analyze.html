@@ -236,11 +236,11 @@ If you don't specify any time, the average is done over all the time period avai
 <pre>
 cd /projects/NS1000K/GEF4530/outputs/archive/f2000.T31T31.control/atm/hist/
 
-ncra -d time,1461,1492 f2000.T31T31.control.cam.h0.0004-01-*.nc f2000.T31T31.control.cam.h0.0005-01-*.nc $HOME/GEF4530/control/f2000.T31T31.control-0005-01-monmean.nc
+ncra -d time,1461.,1492. f2000.T31T31.control.cam.h0.0004-01-*.nc f2000.T31T31.control.cam.h0.0005-01-*.nc $HOME/GEF4530/control/f2000.T31T31.control-0005-01-monmean.nc
 </pre>
 </code>
 <br>
-Adding a time option (<b>-d time,1461,1492</b>) allows you to specify over which time period, the average is done (here between day 1461 to day 1492).
+Adding a time option (<b>-d time,1461.,1492.</b>) allows you to specify over which time period, the average is done (here between day 1461 to day 1492).
 <br>
 <br>
 The calendar in the CESM time manager is the 365 day or no-leap calendar. 
