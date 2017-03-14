@@ -180,8 +180,8 @@ These packages are already installed on cruncher and more information on how to 
 <ol>
 <li>Get access to viz2.norstore.uio.no (all GEF4530 students should have access to this machine)</li>
 <li><b>ssh</b>. It is available on all machines at UIO. If you wish to use your laptop, make sure it installed (on Windows, install <a href="https://git-scm.com/downloads">git bash</a>)</li>
-<li><b>TurboVNC 2.0.1</b>. It is available on all student machines in Room 209 and on all METOS student machines but if you wish to visualize your data from your laptop, install on your machine turbovnc 2.0.1 (<a href="http://sourceforge.net/projects/turbovnc/files/2.0.1/">http://sourceforge.net/projects/turbovnc/files/2.0.1/</a>). Contact us if you need any help.</li>
-<li><b>SSH keys</b>: make sure your public key (on your laptop) is known from viz2.norstore.uio.no.
+<li><b><a href="#turboVNC_viz2">TurboVNC 2.0.1</a></b>. It is available on all student machines in Room 209 and on all METOS student machines but if you wish to visualize your data from your laptop, install on your machine turbovnc 2.0.1 (<a href="http://sourceforge.net/projects/turbovnc/files/2.0.1/">http://sourceforge.net/projects/turbovnc/files/2.0.1/</a>). Contact us if you need any help.</li>
+<li><b><a href="#ssh_keys_viz2">SSH keys</a></b>: make sure your public key (on your laptop) is known from viz2.norstore.uio.no.
 </ol>
 <br>
 <h4 id="ssh_keys_viz2">SSH keys for viz2 (visualization)</h4>
@@ -227,6 +227,51 @@ Make sure you fill your email address correctly. For more information see <a hre
 </code>
 <ul>
 </ol>
+<br>
+<br>
+<h4 id="turboVNC_viz2">Install TurboVNC (visualization)</h4>
+<br>
+This step is required if you wish to visualize your data from your laptop (TurboVNC is already installed at UIO).
+<br>
+<ul>
+<li>Linux Fedora, Redhat, Centos distribution:</li>
+<br>
+<code>
+<pre>
+wget https://sourceforge.net/projects/turbovnc/files/2.0.1/turbovnc-2.0.1.x86_64.rpm/download
+
+sudo rpm -Uvh turbovnc-2.0.1.x86_64.rpm
+
+ls -lrt  /opt/TurboVNC/bin/vncviewer
+
+-rwxr-xr-x. 1 root root 1523 Nov  5  2015 /opt/TurboVNC/bin/vncviewer
+</pre>
+</code>
+<br>
+<code>
+<li>Ubuntu distribution</li>
+<br>
+<code>
+<pre>
+wget https://sourceforge.net/projects/turbovnc/files/2.0.1/turbovnc_2.0.1_amd64.deb/download
+
+sudo dpkg -i turbovnc_2.0.1_amd64.deb
+
+ls -lrt  /opt/TurboVNC/bin/vncviewer
+
+-rwxr-xr-x. 1 root root 1523 Nov  5  2015 /opt/TurboVNC/bin/vncviewer
+</pre>
+</code>
+<br>
+<li>Mac OSX</li>
+<br>
+For Mac users, download <a href="https://sourceforge.net/projects/turbovnc/files/2.0.1/TurboVNC-2.0.1-OracleJava.dmg/download">TurboVNC-2.0.1-OracleJava.dmg</a>. The "OracleJava" TurboVNC package is now the default Mac package, since Oracle Java performs much better than Apple's (deprecated) Java distribution on OS X 10.10 "Yosemite" and later. Contact us if you need any help.
+<br>
+<li>Windows</li>
+<br>
+Download <a href="https://sourceforge.net/projects/turbovnc/files/2.0.1/TurboVNC64-2.0.1.exe/download">TurboVNC64-2.0.1.exe</a> and install it on your laptop. When asked where to install it, make sure to install it in <b>/c/Program Files/TurboVNC/</b> so you can easily use our script to visualize data. Contact us if you need any help.
+<br>
+</ul>
 <br>
 <br>
 <h4 id="ConnectViz2">Connect to viz2</h4>
