@@ -28,17 +28,17 @@ Released   : 20121026
 <br>
 The goal is to run the experiment of your choice for 14 months starting on 1st of January until 1st of March the following year. For this use the same restart file you used for the test experiment. Each of the 4 experiments is given an experiment name:
 <ol>
-<li><b>EXPNAME=CO2</b>:Tripling of CO2 (change CO2 value to 3x367 ppm = 1101 ppm > change the name list) </li>
-<li><b>EXPNAME=sea_ice</b>: Melt of Arctic sea ice (set sea ice fraction to zero North of 40N > change the input data set) </li>
-<li><b>EXPNAME=SST</b>: Super El Nino (add +5 K to tropical Central and East Pacific SST from 5S to 5N, 180W to 85W > change the input data set) </li>
-<li><b>EXPNAME=rocky</b>: Lowering of Rocky Mountains (set surface Geopotential to 0 from 30N to 50N and 125W to 100W > change the input data set) </li>
+<li><b>EXPNAME=CO2</b>:Quadrupling of CO2 (change CO2 value to 4x367 ppm = 1468 ppm > change the name list) </li>
+<li><b>EXPNAME=sea_ice</b>: Melt of Arctic sea ice (set sea ice fraction to zero North of 30N > change the input data set) </li>
+<li><b>EXPNAME=SST</b>: Super El Nino (add +8 K to tropical Central and East Pacific SST from 5S to 5N, 180W to 85W > change the input data set) </li>
+<li><b>EXPNAME=himalaya</b>: Lowering of Himalaya Mountains (set surface Geopotential to 0 from 25N to 40N and 70E to 100E > change the input data set) </li>
 </ol>
 <br>
 Make sure you define an environment variable EXPNAME, every time you login <font color="red">on Abel</font>:
 <br>
 <code>
 <pre>
-# define an environment variable for your experiment (CO2, sea_ice, SST, rocky)
+# define an environment variable for your experiment (CO2, sea_ice, SST, himalaya)
 export EXPNAME=CO2
 </code>
 </pre>
@@ -65,7 +65,7 @@ Create a new case always involve executing create_newcase.
 <pre>
 cd $HOME/cesm/cesm1_2_2/scripts
 
-# Adjust EXPNAME depending on your experiment (CO2, sea_ice, SST, rocky)
+# Adjust EXPNAME depending on your experiment (CO2, sea_ice, SST, himalaya)
 
 export EXPNAME=CO2
 #
@@ -171,10 +171,10 @@ scp login3.norstore.uio.no:/projects/NS1000K/GEF4530/outputs/runs/f2000.T31T31.c
 Now depending on your experiment case, you would have either to change the namelist or to change the input dataset.
 <h3 id="change">Experiment namelist or dataset change</h3>
 <ul>
-<li><a href="CO2.html">Tripling CO2</a></li>
+<li><a href="CO2.html">Quadrupling CO2</a></li>
 <li><a href="sea_ice.html">Melt of Artic sea ice</a></li>
 <li><a href="SST.html">Super El Nino</a></li>
-<li><a href="rocky.html">Lowering Rocky mountains</a></li>
+<li><a href="himalaya.html">Lowering Himalaya mountains</a></li>
 </ul>
 <br>
 <br>

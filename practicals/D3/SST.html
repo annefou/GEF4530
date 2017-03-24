@@ -41,7 +41,7 @@ cp /work/users/$USER/inputdata/atm/cam/sst/sst_HadOIBl_bc_48x96_clim_c050526.nc 
 </code>
 <br>
 <br>
-To change SST (+5K), use <a href="http://nco.sourgeforce.net">nco</a> utilities to edit values on the file.
+To change SST (+8K), use <a href="http://nco.sourgeforce.net">nco</a> utilities to edit values on the file.
 <br>
 We will use a function called <a href="http://nco.sourceforge.net/nco.html#ncap2-netCDF-Arithmetic-Processor">ncap2</a> – (netCDF Arithmetic Averager) single line command below:
 <br>
@@ -54,7 +54,7 @@ We will use a function called <a href="http://nco.sourceforge.net/nco.html#ncap2
 
 module load nco
 
-ncap2 -O -s 'lat2d[lat,lon]=lat ; lon2d[lat,lon]=lon' -s 'omask=(lat2d >= -5.0 && lat2d <= 5.0) && (lon2d >=180.0 && lon2d <= 275.0)' -s 'SST_cpl=(SST_cpl + 5.0*omask)' sst_HadOIBl_bc_48x96_clim_c050526.nc sst_HadOIBl_bc_48x96_clim_$EXPNAME.nc
+ncap2 -O -s 'lat2d[lat,lon]=lat ; lon2d[lat,lon]=lon' -s 'omask=(lat2d >= -5.0 && lat2d <= 5.0) && (lon2d >=180.0 && lon2d <= 275.0)' -s 'SST_cpl=(SST_cpl + 8.0*omask)' sst_HadOIBl_bc_48x96_clim_c050526.nc sst_HadOIBl_bc_48x96_clim_$EXPNAME.nc
 
 </pre>
 </code>
