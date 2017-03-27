@@ -133,6 +133,13 @@ ssh -Y $LOGNAME@viz2.norstore.uio.no
 </pre>
 </code>
 <br>
+Where LOGNAME is an environment variable set to your UIO username. If your username is different on your laptop, you may redefine it:
+<code>
+<pre>
+export LOGNAME=<your UIO username>
+</pre>
+</code>
+<br>
 Report any problems, in particular if you don't have access to viz2. 
 <br>
 <b>Once you know you have access to viz2.norstore.uio.no, you will never login to this machine with ssh. We will give you scripts to make use of the GPUs and quickly visualize your data from your laptop or local machine</b>.
@@ -216,13 +223,15 @@ Make sure you fill your email address correctly. For more information see <a hre
 <li>Copy the public key to viz2.norstore.uio.no:</li>
 <code>
 <pre>
-  scp .ssh/id_rsa.pub viz2.norstore.uio.no:tmp.key
+  scp .ssh/id_rsa.pub $LOGNAME@viz2.norstore.uio.no:tmp.key
 </pre>
 </code>
+<br>
+Remember, LOGNAME is an environment variable set to your UIO username.
 <li>On the viz2.norstore.uio.no add the key to the file .ssh/authorized_keys:</li>
 <code>
 <pre>
-  ssh viz2.norstore.uio.no "cat tmp.key >> .ssh/authorized_keys ; rm tmp.key"
+  ssh $LOGNAME@viz2.norstore.uio.no "cat tmp.key >> .ssh/authorized_keys ; rm tmp.key"
 </pre>
 </code>
 <ul>
@@ -284,7 +293,18 @@ Clone GEF4530 repository (if you haven't done it yet). On your laptop terminal o
 git clone https://github.uio.no/annefou/GEF4530.git
 </pre>
 </code>
-The previous command (git clone) needs to be done once only. Then every time you wish to open a new terminal on viz2:
+The previous command (git clone) needs to be done once only. 
+<br>
+If your username on your laptop is different from your UIO username, edit <b>norstoreVizWin.sh</b> and define USER to your UIO username at the top, after the first line:
+<code>
+<pre>
+#!/bin/bash
+
+export USER=<your UIO username>
+</pre>
+</code>
+<br>
+Then every time you wish to open a new terminal on viz2:
 <code>
 <pre>
 cd GEF4530/setup
@@ -307,6 +327,7 @@ Please note that on Linux system, it expects vncviewer (part of turboVNC) to be 
 <br>
 The first time you launch <b>norstoreVizWin.sh</b>, you will be asked to define a password for TurboVNC. Choose a password you can remember as you will have to enter it for every remote visualization session.
 <br>
+<b>Once you are done with your visuzalition session, do not forget to close the TurboVNC window (and not only the terminal inside it)</b>.
 <br>
 <br>
 <br>
