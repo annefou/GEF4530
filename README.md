@@ -5,6 +5,9 @@
 
 ## Practicals-how to run a climate model
 
+Please visit [https://annefou.github.io/GEF4530/index.html](https://annefou.github.io/GEF4530/index.html) for the lesson page.
+
+
 
 [![DOI](https://zenodo.org/badge/65626428.svg)](https://zenodo.org/badge/latestdoi/65626428)
 
