@@ -1,4 +1,4 @@
-#GEF4530 - The General Circulation of the Atmosphere
+# GEF4530 - The General Circulation of the Atmosphere
 
 ----------
 
