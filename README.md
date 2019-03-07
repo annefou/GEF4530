@@ -1,6 +1,7 @@
 # GEF4530 - The General Circulation of the Atmosphere
 
-----------
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 
 ## Practicals-how to run a climate model
